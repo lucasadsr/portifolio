@@ -15,7 +15,7 @@ export default function RootLayout({
 }) {
   return (
     <html className={inter.className} lang="pt">
-      <body className="antialiased bg-zinc-900">{children}</body>
+      <body className="antialiased bg-zinc-900 text-zinc-50">{children}</body>
     </html>
   )
 }
