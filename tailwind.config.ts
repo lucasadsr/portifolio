@@ -11,6 +11,9 @@ const config: Config = {
       fontFamily: {
         sans: 'var(--font-inter)',
       },
+      blur: {
+        '5xl': '168px',
+      },
     },
   },
   plugins: [],

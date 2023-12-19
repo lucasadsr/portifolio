@@ -7,7 +7,7 @@ export default function portifolioLayout({
   children: ReactNode
 }) {
   return (
-    <div className="min-h-screen w-full max-w-[1440px] mx-auto px-6">
+    <div className="min-h-screen w-full max-w-[1140px] mx-auto px-6">
       <Header />
       {children}
     </div>
