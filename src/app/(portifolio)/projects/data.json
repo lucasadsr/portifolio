@@ -1,0 +1,72 @@
+[
+  {
+    "id": 1,
+    "name": "Ignite Call",
+    "description": "O Ignite Call é um projeto desenvolvido como parte do curso da Rocketseat. Ele permite que os usuários conectem seus calendários do Google e facilitem o agendamento de compromissos nos períodos de tempo livre.",
+    "techs": [
+      "Next.js",
+      "Typescript",
+      "Prisma",
+      "Nookies"
+    ],
+    "image": "https://github.com/lucasadsr/ignite-call/raw/main/public/print1.jpg",
+    "repo": "https://github.com/lucasadsr/ignite-call",
+    "deploy": "https://ignite-call-lucasadsr.vercel.app"
+  },
+  {
+    "id": 2,
+    "name": "Ignite Shop",
+    "description": "Ignite Shop, uma plataforma de e-commerce para comprar camisetas temáticas da Rocketseat. O projeto utiliza o Next.js para implementar a Renderização do Lado do Servidor (SSR) e a Geração de Site Estático (SSG) para melhorar o desempenho e o SEO.",
+    "techs": [
+      "Next.js",
+      "Typescript",
+      "Stripe",
+      "Axios"
+    ],
+    "image": "https://github.com/lucasadsr/ignite-shop/raw/main/public/ignite-shop-print.png",
+    "repo": "https://github.com/lucasadsr/ignite-shop",
+    "deploy": "https://ignite-shop-lucasadsr.vercel.app"
+  },
+  {
+    "id": 3,
+    "name": "Github Blog",
+    "description": "Este projeto é um blog que utiliza a API do Github para exibir postagens criadas a partir das issues do repositório do projeto.",
+    "techs": [
+      "Vite",
+      "Typescript",
+      "Styled-Components",
+      "Axios"
+    ],
+    "image": "https://github.com/lucasadsr/github-blog/raw/main/src/assets/capa.png",
+    "repo": "https://github.com/lucasadsr/github-blog",
+    "deploy": "https://github-blog-xi-rust.vercel.app"
+  },
+  {
+    "id": 4,
+    "name": "Coffee Delivery",
+    "description": "Coffee Delivery é um e-commerce de cafés onde os usuários podem explorar diferentes tipos de café, adicionar itens ao carrinho e fazer pedidos.",
+    "techs": [
+      "Vite",
+      "Typescript",
+      "Styled-Components",
+      "Context API"
+    ],
+    "image": "https://github.com/lucasadsr/coffee-delivery/blob/main/public/print.png?raw=true",
+    "repo": "https://github.com/lucasadsr/coffee-delivery",
+    "deploy": "https://coffee-delivery-lucasadsr.vercel.app"
+  },
+  {
+    "id": 5,
+    "name": "Daily Diet API",
+    "description": "Esta é a API Daily Diet, um sistema de controle de dieta diária que permite a criação de usuário, registro de refeição, listagem de refeição, metricas do usuário e outras funcionalidades.",
+    "techs": [
+      "Node.js",
+      "Typescript",
+      "Fastify",
+      "Zod"
+    ],
+    "image": "https://github.com/lucasadsr/daily-diet-API/raw/main/assets/print.png",
+    "repo": "https://github.com/lucasadsr/daily-diet-API",
+    "deploy": ""
+  }
+]

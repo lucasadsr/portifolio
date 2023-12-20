@@ -15,7 +15,7 @@ export function Header() {
             <Link href="/">Início</Link>
           </li>
           <li className="text-zinc-300 font-semibold hover:text-white cursor-pointer transition-all">
-            <Link href="/">Projetos</Link>
+            <Link href="/projects">Projetos</Link>
           </li>
           <li className="text-zinc-300 font-semibold hover:text-white cursor-pointer transition-all">
             <Link href="/">Habilidades</Link>
