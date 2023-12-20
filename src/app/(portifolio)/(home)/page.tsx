@@ -6,7 +6,7 @@ export default function Home() {
       <div className="w-80 h-80 rounded-full bg-blue-800 absolute z-[-1] filter blur-5xl opacity-70" />
       <div className="flex flex-col gap-5">
         <div>
-          <p>Hi, i am</p>
+          <p>Olá, eu sou</p>
           <h1 className="text-6xl font-semibold">Lucas Ribeiro</h1>
         </div>
         <p className="text-2xl font-semibold text-green-400 ">

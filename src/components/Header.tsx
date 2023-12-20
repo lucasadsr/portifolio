@@ -12,16 +12,16 @@ export function Header() {
       <nav>
         <ul className="flex gap-16">
           <li className="text-white font-semibold hover:text-white cursor-pointer transition-all">
-            <Link href="/">Home</Link>
+            <Link href="/">Início</Link>
           </li>
           <li className="text-zinc-300 font-semibold hover:text-white cursor-pointer transition-all">
-            <Link href="/">Projects</Link>
+            <Link href="/">Projetos</Link>
           </li>
           <li className="text-zinc-300 font-semibold hover:text-white cursor-pointer transition-all">
-            <Link href="/">Skills</Link>
+            <Link href="/">Habilidades</Link>
           </li>
           <li className="text-zinc-300 font-semibold hover:text-white cursor-pointer transition-all">
-            <Link href="/">Contact</Link>
+            <Link href="/">Contato</Link>
           </li>
         </ul>
       </nav>
