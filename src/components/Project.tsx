@@ -17,7 +17,6 @@ export function Project({ project }: ProjectProps) {
         alt=""
         width={556}
         height={316}
-        objectFit="cover"
         quality={100}
       />
       <div className="flex flex-col gap-4">
