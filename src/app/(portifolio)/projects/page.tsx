@@ -3,6 +3,13 @@ import ArrowImage from '@/../public/arrow-ornament.png'
 import projects from './data.json'
 import { Project } from '@/components/Project'
 import { Github } from 'lucide-react'
+import { Metadata } from 'next'
+
+export function generateMetadata(): Metadata {
+  return {
+    title: 'Projetos',
+  }
+}
 
 export default function Projects() {
   return (
