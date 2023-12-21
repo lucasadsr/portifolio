@@ -1,0 +1,128 @@
+[
+  {
+    "id": 1,
+    "src": "react",
+    "title": "React",
+    "stack": "front-end"
+  },
+  {
+    "id": 2,
+    "src": "nextjs",
+    "title": "Next.Js",
+    "stack": "front-end"
+  },
+  {
+    "id": 3,
+    "src": "tailwind",
+    "title": "Tailwind",
+    "stack": "front-end"
+  },
+  {
+    "id": 4,
+    "src": "vite",
+    "title": "Vite",
+    "stack": "front-end"
+  },
+  {
+    "id": 5,
+    "src": "styledcomponents",
+    "title": "Styled-Components",
+    "stack": "front-end"
+  },
+  {
+    "id": 6,
+    "src": "css",
+    "title": "CSS",
+    "stack": "front-end"
+  },
+  {
+    "id": 7,
+    "src": "html",
+    "title": "HTML",
+    "stack": "front-end"
+  },
+  {
+    "id": 8,
+    "src": "bootstrap",
+    "title": "Bootstrap",
+    "stack": "front-end"
+  },
+  {
+    "id": 9,
+    "src": "nodejs",
+    "title": "Node.Js",
+    "stack": "back-end"
+  },
+  {
+    "id": 10,
+    "src": "express",
+    "title": "Express",
+    "stack": "back-end"
+  },
+  {
+    "id": 11,
+    "src": "git",
+    "title": "Git",
+    "stack": "back-end"
+  },
+  {
+    "id": 12,
+    "src": "github",
+    "title": "Github",
+    "stack": "back-end"
+  },
+  {
+    "id": 13,
+    "src": "azure",
+    "title": "Azure",
+    "stack": "back-end"
+  },
+  {
+    "id": 14,
+    "src": "postman",
+    "title": "Postman",
+    "stack": "back-end"
+  },
+  {
+    "id": 15,
+    "src": "typescript",
+    "title": "TypeScript",
+    "stack": "back-end"
+  },
+  {
+    "id": 16,
+    "src": "prisma",
+    "title": "Prisma",
+    "stack": "back-end"
+  },
+  {
+    "id": 17,
+    "src": "docker",
+    "title": "Docker",
+    "stack": "back-end"
+  },
+  {
+    "id": 18,
+    "src": "mysql",
+    "title": "MySQL",
+    "stack": "back-end"
+  },
+  {
+    "id": 19,
+    "src": "postgres",
+    "title": "Postgres",
+    "stack": "back-end"
+  },
+  {
+    "id": 20,
+    "src": "mongodb",
+    "title": "MongoDB",
+    "stack": "back-end"
+  },
+  {
+    "id": 21,
+    "src": "python",
+    "title": "Python",
+    "stack": "back-end"
+  }
+]

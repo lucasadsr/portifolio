@@ -16,7 +16,6 @@
   border-radius: 4px;
 }
 
-/* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #11df5d;
 }

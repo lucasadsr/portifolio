@@ -31,7 +31,7 @@ export function Links() {
           '/skills',
         )} font-semibold hover:text-white cursor-pointer transition-all`}
       >
-        <Link href="/">Habilidades</Link>
+        <Link href="/skills">Habilidades</Link>
       </li>
       <li
         className={`${isActive(
