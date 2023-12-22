@@ -1,16 +1,40 @@
+'use client'
+
 import { Project } from '@/types/project'
 import { Github, Globe } from 'lucide-react'
 import Image from 'next/image'
+import { Variants, motion } from 'framer-motion'
 
 interface ProjectProps {
   project: Project
+}
+
+const projectVariants: Variants = {
+  offscreen: {
+    opacity: 0,
+    y: 20,
+  },
+  onscreen: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: 'spring',
+      bounce: 0.4,
+      duration: 1.2,
+    },
+  },
 }
 
 export function Project({ project }: ProjectProps) {
   const { name, description, techs, image, repo, deploy } = project
 
   return (
-    <div className="flex gap-8">
+    <motion.div
+      variants={projectVariants}
+      initial="offscreen"
+      whileInView="onscreen"
+      className="flex gap-8"
+    >
       <a
         href={repo}
         target="_blank"
@@ -56,6 +80,6 @@ export function Project({ project }: ProjectProps) {
           )}
         </div>
       </div>
-    </div>
+    </motion.div>
   )
 }

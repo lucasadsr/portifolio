@@ -16,9 +16,9 @@ export default function Skills() {
           Front-End
         </p>
         <div className="flex justify-center flex-wrap gap-4 w-[416px]">
-          {skills.map((skill) => {
+          {skills.map((skill, i) => {
             return skill.stack === 'front-end' ? (
-              <Skill key={skill.id} skill={skill} />
+              <Skill key={skill.id} skill={skill} delay={i} />
             ) : null
           })}
         </div>
@@ -29,9 +29,9 @@ export default function Skills() {
           Back-End
         </p>
         <div className="flex justify-center flex-wrap gap-4 w-[416px]">
-          {skills.map((skill) => {
+          {skills.map((skill, i) => {
             return skill.stack === 'back-end' ? (
-              <Skill key={skill.id} skill={skill} />
+              <Skill key={skill.id} skill={skill} delay={i} />
             ) : null
           })}
         </div>

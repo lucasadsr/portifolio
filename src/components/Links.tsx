@@ -38,7 +38,7 @@ export function Links() {
           '/contact',
         )} font-semibold hover:text-white cursor-pointer transition-all`}
       >
-        <Link href="/">Contato</Link>
+        <Link href="/contact">Contato</Link>
       </li>
     </ul>
   )
