@@ -11,14 +11,20 @@ export function Project({ project }: ProjectProps) {
 
   return (
     <div className="flex gap-8">
-      <Image
-        className="rounded-sm"
-        src={image}
-        alt=""
-        width={556}
-        height={316}
-        quality={100}
-      />
+      <a
+        href={repo}
+        target="_blank"
+        className="rounded-md min-w-[556px] h-fit hover:shadow-project transition-all"
+      >
+        <Image
+          className="rounded-md"
+          src={image}
+          alt=""
+          width={556}
+          height={316}
+          quality={100}
+        />
+      </a>
       <div className="flex flex-col gap-4">
         <p className="text-5xl font-semibold text-white">{name}</p>
         <p className="text-zinc-400">{description}</p>

@@ -14,6 +14,9 @@ const config: Config = {
       blur: {
         '5xl': '168px',
       },
+      boxShadow: {
+        project: '0px 0px 25px 9px rgba(59, 130, 246, 0.3)',
+      },
     },
   },
   plugins: [],
