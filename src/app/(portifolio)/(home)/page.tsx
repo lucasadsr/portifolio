@@ -12,8 +12,9 @@ export default function Home() {
         <h2 className="text-2xl font-semibold text-green-400 ">
           {'>'} Desenvolvedor Full-Stack
         </h2>
-        <p className="text-zinc-400 max-w-[70%]">
-          {'//'} Sou um desenvolvedor full stack especializado em TypeScript,
+        <p className="text-zinc-400 max-w-[72%]">
+          {'//'} Sou um desenvolvedor Full-Stack especializado em{' '}
+          <span className="text-blue-400 font-semibold">TypeScript</span>,
           utilizando{' '}
           <span className="text-blue-400 font-semibold">Next.js</span> e{' '}
           <span className="text-blue-400 font-semibold">Fastify</span> para
