@@ -9,9 +9,9 @@ export default function Home() {
           <p>Olá, eu sou</p>
           <h1 className="text-6xl font-semibold">Lucas Ribeiro</h1>
         </div>
-        <p className="text-2xl font-semibold text-green-400 ">
+        <h2 className="text-2xl font-semibold text-green-400 ">
           {'>'} Desenvolvedor Full-Stack
-        </p>
+        </h2>
         <p className="text-zinc-400 max-w-[70%]">
           {'//'} Sou um desenvolvedor full stack especializado em TypeScript,
           utilizando{' '}

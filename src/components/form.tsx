@@ -2,6 +2,7 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
+import { motion } from 'framer-motion'
 
 const messageSchema = z.object({
   name: z
@@ -39,40 +40,64 @@ export function Form() {
       onSubmit={handleSubmit(sendMessage)}
       className="mx-auto mt-4 p-8 flex flex-col items-center w-[440px] gap-6 rounded-lg"
     >
-      <label className="flex flex-col gap-2 w-full">
-        Nome:{' '}
-        <input
-          type="text"
-          placeholder="Seu nome"
-          required
-          className="bg-transparent p-1 border-b-2 border-zinc-600 outline-none focus:border-green-600 transition-all"
-          {...register('name')}
-        />
-        {errors.name ? (
-          <p className="text-red-600">{errors.name.message}</p>
-        ) : (
-          ''
-        )}
-      </label>
+      <motion.div
+        className=" w-full"
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.3 }}
+      >
+        <label className="flex flex-col gap-2">
+          Nome:{' '}
+          <input
+            type="text"
+            placeholder="Seu nome"
+            required
+            className="bg-transparent p-1 border-b-2 border-zinc-600 outline-none focus:border-green-600 transition-all"
+            {...register('name')}
+          />
+          {errors.name ? (
+            <p className="text-red-600">{errors.name.message}</p>
+          ) : (
+            ''
+          )}
+        </label>
+      </motion.div>
 
-      <label className="flex flex-col gap-2 w-full">
-        Mensagem:{' '}
-        <textarea
-          placeholder="Sua mensagem"
-          rows={6}
-          required
-          {...register('message')}
-          className="bg-transparent p-1 border-b-2 border-zinc-600 outline-none focus:border-green-600 transition-all"
-        />
-        {errors.message ? (
-          <p className="text-red-600">{errors.message.message}</p>
-        ) : (
-          ''
-        )}
-      </label>
-      <button className="font-semibold flex items-center gap-2 bg-green-700 py-2 px-4 rounded-md hover:bg-green-600 transition-all">
-        Enviar mensagem
-      </button>
+      <motion.div
+        className=" w-full"
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.7 }}
+      >
+        <label className="flex flex-col gap-2 w-full">
+          Mensagem:{' '}
+          <textarea
+            placeholder="Sua mensagem"
+            rows={6}
+            required
+            {...register('message')}
+            className="bg-transparent p-1 border-b-2 border-zinc-600 outline-none focus:border-green-600 transition-all"
+          />
+          {errors.message ? (
+            <p className="text-red-600">{errors.message.message}</p>
+          ) : (
+            ''
+          )}
+        </label>
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 1 }}
+      >
+        <button
+          disabled={isSubmitting}
+          className="font-semibold flex items-center gap-2 bg-green-700 py-2 px-4 rounded-md hover:bg-green-600 transition-all"
+        >
+          Enviar mensagem
+        </button>
+      </motion.div>
     </form>
   )
 }
