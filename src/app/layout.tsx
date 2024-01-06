@@ -5,10 +5,7 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 
 export const metadata: Metadata = {
-  title: {
-    template: '%s | Lucas Ribeiro',
-    default: 'Lucas Ribeiro',
-  },
+  title: 'Lucas Ribeiro',
   description:
     'Sou um desenvolvedor full stack especializado em TypeScript, utilizando Next.js e Fastify para construir aplicações web eficientes. Minha expertise em Tailwind e Prisma complementa a criação de interfaces modernas e a integração segura com bancos de dados MySQL, PostgreSQL e MongoDB.',
 }

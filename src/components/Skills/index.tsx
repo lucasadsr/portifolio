@@ -1,12 +1,5 @@
 import { Skill } from '@/components/Skill'
 import skills from './data.json'
-import { Metadata } from 'next'
-
-export function generateMetadata(): Metadata {
-  return {
-    title: 'Habilidades',
-  }
-}
 
 export default function Skills() {
   return (

@@ -1,11 +1,4 @@
 import { Form } from '@/components/form'
-import { Metadata } from 'next'
-
-export function generateMetadata(): Metadata {
-  return {
-    title: 'Contato',
-  }
-}
 
 export default function Contact() {
   return (
