@@ -3,38 +3,40 @@
 import { Skill } from '@/types/skill'
 import * as Tooltip from '@radix-ui/react-tooltip'
 import Image from 'next/image'
-import { motion } from 'framer-motion'
-import { useEffect, useState } from 'react'
+import { Variants, motion } from 'framer-motion'
 
 interface SkillProps {
   skill: Skill
-  delay: number
 }
 
-export function Skill({ skill, delay }: SkillProps) {
+const skillVariants: Variants = {
+  offscreen: {
+    opacity: 0,
+    y: 20,
+  },
+  onscreen: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: 'spring',
+      bounce: 0.4,
+      duration: 0.5,
+      delay: 0.1,
+    },
+  },
+}
+
+export function Skill({ skill }: SkillProps) {
   const { src, title } = skill
-
-  const [isVisible, setIsVisible] = useState(false)
-
-  useEffect(() => {
-    const timeout = setTimeout(
-      () => {
-        setIsVisible(true)
-      },
-      100 + delay * 70,
-    )
-
-    return () => clearTimeout(timeout)
-  }, [])
 
   return (
     <Tooltip.Provider delayDuration={100}>
       <Tooltip.Root>
         <Tooltip.Trigger asChild>
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isVisible ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5 }}
+            variants={skillVariants}
+            initial="offscreen"
+            whileInView="onscreen"
           >
             <Image
               src={`https://skillicons.dev/icons?i=${src}`}

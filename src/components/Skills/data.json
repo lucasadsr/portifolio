@@ -48,6 +48,12 @@
     "stack": "front-end"
   },
   {
+    "id": 22,
+    "src": "figma",
+    "title": "Figma",
+    "stack": "front-end"
+  },
+  {
     "id": 9,
     "src": "nodejs",
     "title": "Node.Js",

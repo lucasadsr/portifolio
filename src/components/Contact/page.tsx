@@ -9,12 +9,12 @@ export function generateMetadata(): Metadata {
 
 export default function Contact() {
   return (
-    <div className="mt-12">
-      <p className="text-6xl text-green-400 font-semibold">
-        Me mande uma mensagem!
+    <section id="contact" className="mt-12 pt-24">
+      <p className="text-4xl text-green-400 font-semibold text-center">
+        Vamos construir algo juntos?
       </p>
 
       <Form />
-    </div>
+    </section>
   )
 }

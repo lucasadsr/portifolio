@@ -1,44 +1,55 @@
 'use client'
 
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { useEffect, useState } from 'react'
 
 export function Links() {
-  const path = usePathname()
+  const [hash, setHash] = useState('#hero')
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      setHash(window.location.hash as string)
+    }
+
+    window.addEventListener('hashchange', handleHashChange)
+
+    return () => {
+      window.removeEventListener('hashchange', handleHashChange)
+    }
+  }, [hash])
 
   const isActive = (pathname: string) => {
-    return path === pathname ? 'text-white' : 'text-zinc-300'
+    return hash === pathname ? 'text-white' : 'text-zinc-300'
   }
 
   return (
     <ul className="flex gap-16">
       <li
         className={`${isActive(
-          '/',
+          '#hero',
         )} font-semibold hover:text-white cursor-pointer transition-all`}
       >
-        <Link href="/">Início</Link>
+        <a href="#hero">Início</a>
       </li>
       <li
         className={`${isActive(
-          '/projects',
+          '#projects',
         )} font-semibold hover:text-white cursor-pointer transition-all`}
       >
-        <Link href="/projects">Projetos</Link>
+        <a href="#projects">Projetos</a>
       </li>
       <li
         className={`${isActive(
-          '/skills',
+          '#skills',
         )} font-semibold hover:text-white cursor-pointer transition-all`}
       >
-        <Link href="/skills">Habilidades</Link>
+        <a href="#skills">Habilidades</a>
       </li>
       <li
         className={`${isActive(
-          '/contact',
+          '#contact',
         )} font-semibold hover:text-white cursor-pointer transition-all`}
       >
-        <Link href="/contact">Contato</Link>
+        <a href="#contact">Contato</a>
       </li>
     </ul>
   )

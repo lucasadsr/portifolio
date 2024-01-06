@@ -13,8 +13,8 @@ export function generateMetadata(): Metadata {
 
 export default function Projects() {
   return (
-    <div className="mt-12">
-      <div className="flex mb-16">
+    <section id="projects" className="pt-24">
+      <div className="flex">
         <p className="text-6xl text-green-400 font-semibold w-[400px] leading-tight ">
           Projetos que já fiz
         </p>
@@ -35,6 +35,6 @@ export default function Projects() {
         <Github />
         Ver todos os projetos
       </a>
-    </div>
+    </section>
   )
 }
