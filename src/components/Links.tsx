@@ -6,7 +6,19 @@ import { useEffect, useState } from 'react'
 
 export function Links() {
   const [hash, setHash] = useState('#hero')
-  const windowWidth = window.innerWidth
+  const [windowWidth, setWindowWidth] = useState<number>(0)
+
+  useEffect(() => {
+    function handleResize() {
+      setWindowWidth(window.innerWidth)
+    }
+
+    window.addEventListener('resize', handleResize)
+
+    handleResize()
+
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
 
   useEffect(() => {
     const handleHashChange = () => {
