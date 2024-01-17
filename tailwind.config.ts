@@ -17,6 +17,9 @@ const config: Config = {
       boxShadow: {
         project: '0px 0px 25px 9px rgba(59, 130, 246, 0.3)',
       },
+      screens: {
+        mobile: { max: '640px' },
+      },
     },
   },
   plugins: [],

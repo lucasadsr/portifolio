@@ -6,12 +6,16 @@ import { Github } from 'lucide-react'
 
 export default function Projects() {
   return (
-    <section id="projects" className="pt-24">
+    <section id="projects" className="pt-24 mobile:pt-16">
       <div className="flex">
-        <p className="text-6xl text-green-400 font-semibold w-[400px] leading-tight ">
+        <p className="text-6xl text-green-400 font-semibold w-[400px] leading-tight mobile:max-w-screen mobile:text-4xl mobile:text-center mobile:mb-12">
           Projetos que já fiz
         </p>
-        <Image src={ArrowImage} alt="Arrow pointing to my projects" />
+        <Image
+          src={ArrowImage}
+          alt="Arrow pointing to my projects"
+          className="mobile:hidden"
+        />
       </div>
 
       <div className="flex flex-col gap-16">

@@ -2,7 +2,7 @@ import { Github, Linkedin, Mail } from 'lucide-react'
 
 export function Footer() {
   return (
-    <section className="bg-zinc-800 flex items-center justify-center gap-16 h-14">
+    <section className="bg-zinc-800 flex items-center justify-center gap-16 h-14 mobile:justify-evenly mobile:gap-0">
       <p className="text-zinc-100">
         Feito por{' '}
         <a

@@ -33,7 +33,7 @@ export function Project({ project }: ProjectProps) {
       variants={projectVariants}
       initial="offscreen"
       whileInView="onscreen"
-      className="flex gap-8"
+      className="flex gap-8 mobile:flex-col mobile:w-full mobile:gap-3"
     >
       <a
         href={repo}
@@ -41,7 +41,7 @@ export function Project({ project }: ProjectProps) {
         className="rounded-md min-w-[556px] h-fit hover:shadow-project transition-all"
       >
         <Image
-          className="rounded-md"
+          className="rounded-md mobile:w-[300px]"
           src={image}
           alt=""
           width={556}
@@ -50,7 +50,9 @@ export function Project({ project }: ProjectProps) {
         />
       </a>
       <div className="flex flex-col gap-4">
-        <p className="text-5xl font-semibold text-white">{name}</p>
+        <p className="text-5xl font-semibold text-white mobile:text-4xl">
+          {name}
+        </p>
         <p className="text-zinc-400">{description}</p>
         <div className="flex gap-4 flex-wrap">
           {techs.map((tech, i) => {

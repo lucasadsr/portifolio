@@ -2,17 +2,22 @@ import { ArrowBigDown, Download, Github, Linkedin, Mail } from 'lucide-react'
 
 export function Hero() {
   return (
-    <section id="hero" className="h-screen flex flex-col gap-8 pt-60 relative">
+    <section
+      id="hero"
+      className="h-screen flex flex-col gap-8 pt-60 mobile:w-screen mobile:pt-32"
+    >
       <div className="w-80 h-80 rounded-full bg-blue-800 absolute z-[-1] filter blur-5xl opacity-70" />
       <div className="flex flex-col gap-5">
         <div>
           <p>Olá, eu sou</p>
-          <h1 className="text-6xl font-semibold">Lucas Ribeiro</h1>
+          <h1 className="text-6xl font-semibold mobile:max-w-[230px]">
+            Lucas Ribeiro
+          </h1>
         </div>
         <h2 className="text-2xl font-semibold text-green-400 ">
           {'>'} Desenvolvedor Full-Stack
         </h2>
-        <p className="text-zinc-400 max-w-[72%]">
+        <p className="text-zinc-400 max-w-[72%] mobile:max-w-[90%]">
           {'//'} Sou um desenvolvedor Full-Stack especializado em{' '}
           <span className="text-blue-400 font-semibold">TypeScript</span>,
           utilizando{' '}
@@ -61,7 +66,7 @@ export function Hero() {
 
       <a
         href="#projects"
-        className="absolute bottom-24 left-[50%] animate-bounce"
+        className="absolute bottom-24 left-0 right-0 mx-auto w-fit animate-bounce mobile:bottom-1"
       >
         <ArrowBigDown size={36} color="#60A5F5" />
       </a>

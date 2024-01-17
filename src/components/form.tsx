@@ -38,7 +38,7 @@ export function Form() {
   return (
     <form
       onSubmit={handleSubmit(sendMessage)}
-      className="mx-auto mt-4 p-8 flex flex-col items-center w-[440px] gap-6 rounded-lg"
+      className="mx-auto mt-4 p-8 flex flex-col items-center w-[440px] gap-6 rounded-lg mobile:w-full mobile:p-1"
     >
       <motion.div
         className=" w-full"
