@@ -68,7 +68,7 @@ export function Hero() {
         href="#projects"
         className="absolute bottom-24 left-0 right-0 mx-auto w-fit animate-bounce mobile:bottom-1"
       >
-        <ArrowBigDown size={36} color="#60A5F5" />
+        <ArrowBigDown size={36} color="#60A5F5" className="hover:fill-[#60A5F5]" />
       </a>
     </section>
   )
