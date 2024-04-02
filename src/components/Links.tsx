@@ -72,18 +72,21 @@ export function Links() {
       <DropdownMenu.Trigger>
         <Menu />
       </DropdownMenu.Trigger>
-      <DropdownMenu.Content className="bg-zinc-700 p-8 rounded-2xl flex flex-col gap-3">
-        <DropdownMenu.Item></DropdownMenu.Item>
-        <DropdownMenu.Item>
+      <DropdownMenu.Content
+        align="end"
+        sideOffset={5}
+        className="w-32 rounded-lg px-1.5 py-1 shadow-md md:w-56 bg-white dark:bg-gray-800"
+      >
+        <DropdownMenu.Item className="flex cursor-default select-none items-center rounded-md px-2 py-2 text-sm outline-none text-gray-200 focus:bg-gray-500">
           <a href="#hero">Início</a>
         </DropdownMenu.Item>
-        <DropdownMenu.Item>
+        <DropdownMenu.Item className="flex cursor-default select-none items-center rounded-md px-2 py-2 text-sm outline-none text-gray-200 focus:bg-gray-500">
           <a href="#projects">Projetos</a>
         </DropdownMenu.Item>
-        <DropdownMenu.Item>
+        <DropdownMenu.Item className="flex cursor-default select-none items-center rounded-md px-2 py-2 text-sm outline-none text-gray-200 focus:bg-gray-500">
           <a href="#skills">Habilidades</a>
         </DropdownMenu.Item>
-        <DropdownMenu.Item color="red">
+        <DropdownMenu.Item className="flex cursor-default select-none items-center rounded-md px-2 py-2 text-sm outline-none text-gray-200 focus:bg-gray-500">
           <a href="#contact">Contato</a>
         </DropdownMenu.Item>
       </DropdownMenu.Content>
