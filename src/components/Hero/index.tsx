@@ -57,11 +57,11 @@ export function Hero() {
           <Mail />
         </a>
 
-        <a href="../../../../public/resume.pdf" download>
+        {/* <a href="../../../../public/resume.pdf" download>
           <button className="bg-blue-700 h-10 p-2 flex gap-3 rounded font-semibold hover:bg-blue-600 transition-all">
             Baixar currículo <Download />{' '}
           </button>
-        </a>
+        </a> */}
       </div>
 
       <a
