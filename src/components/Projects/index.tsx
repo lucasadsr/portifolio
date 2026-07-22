@@ -4,7 +4,7 @@ import projects from './data.json'
 import { Project } from '@/components/Project'
 import { GithubIcon } from '@/components/icons'
 
-export default function Projects() {
+export function Projects() {
   return (
     <section id="projects" className="pt-24 max-sm:pt-16">
       <div className="flex">

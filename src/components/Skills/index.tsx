@@ -1,7 +1,7 @@
 import { Skill } from '@/components/Skill'
 import skills from './data.json'
 
-export default function Skills() {
+export function Skills() {
   return (
     <section id="skills" className="mt-16 mb-4 pt-24 max-sm:pt-16">
       <p className="text-6xl text-green-400 font-semibold text-center pb-24 max-sm:text-4xl max-sm:pb-12">
