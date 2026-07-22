@@ -13,98 +13,92 @@
   },
   {
     "id": 3,
+    "src": "expo",
+    "title": "Expo",
+    "stack": "front-end"
+  },
+  {
+    "id": 4,
+    "src": "redux",
+    "title": "Redux",
+    "stack": "front-end"
+  },
+  {
+    "id": 5,
     "src": "tailwind",
     "title": "Tailwind",
     "stack": "front-end"
   },
   {
-    "id": 4,
+    "id": 6,
     "src": "vite",
     "title": "Vite",
     "stack": "front-end"
   },
   {
-    "id": 5,
+    "id": 7,
     "src": "styledcomponents",
     "title": "Styled-Components",
     "stack": "front-end"
   },
   {
-    "id": 6,
+    "id": 8,
     "src": "css",
     "title": "CSS",
     "stack": "front-end"
   },
   {
-    "id": 7,
+    "id": 9,
     "src": "html",
     "title": "HTML",
     "stack": "front-end"
   },
   {
-    "id": 8,
+    "id": 10,
     "src": "bootstrap",
     "title": "Bootstrap",
     "stack": "front-end"
   },
   {
-    "id": 22,
+    "id": 11,
     "src": "figma",
     "title": "Figma",
     "stack": "front-end"
   },
   {
-    "id": 9,
+    "id": 12,
     "src": "nodejs",
     "title": "Node.Js",
     "stack": "back-end"
   },
   {
-    "id": 10,
+    "id": 13,
     "src": "express",
     "title": "Express",
     "stack": "back-end"
   },
   {
-    "id": 11,
-    "src": "git",
-    "title": "Git",
-    "stack": "back-end"
-  },
-  {
-    "id": 12,
-    "src": "github",
-    "title": "Github",
-    "stack": "back-end"
-  },
-  {
-    "id": 13,
-    "src": "azure",
-    "title": "Azure",
-    "stack": "back-end"
-  },
-  {
     "id": 14,
-    "src": "postman",
-    "title": "Postman",
-    "stack": "back-end"
-  },
-  {
-    "id": 15,
     "src": "typescript",
     "title": "TypeScript",
     "stack": "back-end"
   },
   {
+    "id": 15,
+    "src": "go",
+    "title": "Go / Golang",
+    "stack": "back-end"
+  },
+  {
     "id": 16,
-    "src": "prisma",
-    "title": "Prisma",
+    "src": "python",
+    "title": "Python",
     "stack": "back-end"
   },
   {
     "id": 17,
-    "src": "docker",
-    "title": "Docker",
+    "src": "prisma",
+    "title": "Prisma",
     "stack": "back-end"
   },
   {
@@ -127,8 +121,38 @@
   },
   {
     "id": 21,
-    "src": "python",
-    "title": "Python",
-    "stack": "back-end"
+    "src": "docker",
+    "title": "Docker",
+    "stack": "devops"
+  },
+  {
+    "id": 22,
+    "src": "vercel",
+    "title": "Vercel",
+    "stack": "devops"
+  },
+  {
+    "id": 23,
+    "src": "azure",
+    "title": "Azure",
+    "stack": "devops"
+  },
+  {
+    "id": 24,
+    "src": "git",
+    "title": "Git",
+    "stack": "devops"
+  },
+  {
+    "id": 25,
+    "src": "github",
+    "title": "Github",
+    "stack": "devops"
+  },
+  {
+    "id": 26,
+    "src": "postman",
+    "title": "Postman",
+    "stack": "devops"
   }
 ]
