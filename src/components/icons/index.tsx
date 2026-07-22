@@ -9,7 +9,7 @@ interface IconProps {
   size?: number
 }
 
-export function GithubIcon({ className, size = 24 }: IconProps) {
+export function GithubIcon({ className, size = 20 }: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -26,7 +26,7 @@ export function GithubIcon({ className, size = 24 }: IconProps) {
   )
 }
 
-export function LinkedinIcon({ className, size = 24 }: IconProps) {
+export function LinkedinIcon({ className, size = 20 }: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

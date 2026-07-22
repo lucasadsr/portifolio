@@ -92,7 +92,7 @@ export function Projects() {
           verticalDistance={25}
           delay={4500}
           pauseOnHover={true}
-          skewAmount={3}
+          skewAmount={4}
         >
           {projects.map((project, index) => (
             <Card

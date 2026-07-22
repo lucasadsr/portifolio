@@ -25,7 +25,7 @@ export function Footer() {
             aria-label="Perfil do GitHub"
             className="p-2 rounded-lg hover:text-emerald-400 hover:bg-zinc-800/60 transition-all"
           >
-            <GithubIcon />
+            <GithubIcon size={20} />
           </a>
           <a
             href="https://www.linkedin.com/in/lucasadsr/"
@@ -34,7 +34,7 @@ export function Footer() {
             aria-label="Perfil do LinkedIn"
             className="p-2 rounded-lg hover:text-emerald-400 hover:bg-zinc-800/60 transition-all"
           >
-            <LinkedinIcon />
+            <LinkedinIcon size={20} />
           </a>
           <a
             href="mailto:lucasaraujodesa@hotmail.com"
@@ -42,7 +42,7 @@ export function Footer() {
             aria-label="Enviar e-mail"
             className="p-2 rounded-lg hover:text-emerald-400 hover:bg-zinc-800/60 transition-all"
           >
-            <Mail size={18} />
+            <Mail size={20} />
           </a>
         </div>
       </div>
