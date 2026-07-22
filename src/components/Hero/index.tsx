@@ -129,7 +129,7 @@ export function Hero() {
             <LinkedinIcon size={20} /> LinkedIn
           </a>
           <a
-            href="mailto:lucasaraujodesa@hotmail.com"
+            href="mailto:lucasaraujodsr@gmail.com"
             rel="noopener noreferrer"
             className="flex items-center gap-2.5 px-5 py-2.5 rounded-xl bg-zinc-900/80 border border-zinc-800 text-zinc-200 hover:text-white hover:border-emerald-500/40 hover:bg-zinc-800/80 hover:-translate-y-0.5 transition-all shadow-lg shadow-black/40 hover:shadow-emerald-500/10 font-medium text-sm"
           >

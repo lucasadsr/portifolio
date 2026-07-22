@@ -37,7 +37,7 @@ export function Footer() {
             <LinkedinIcon size={20} />
           </a>
           <a
-            href="mailto:lucasaraujodesa@hotmail.com"
+            href="mailto:lucasaraujodsr@gmail.com"
             rel="noopener noreferrer"
             aria-label="Enviar e-mail"
             className="p-2 rounded-lg hover:text-emerald-400 hover:bg-zinc-800/60 transition-all"
