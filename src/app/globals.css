@@ -1,6 +1,10 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-inter);
+  --blur-5xl: 168px;
+  --shadow-project: 0px 0px 25px 9px rgba(59, 130, 246, 0.3);
+}
 
 ::-webkit-scrollbar {
   width: 6px;

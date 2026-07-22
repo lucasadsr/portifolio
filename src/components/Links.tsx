@@ -37,7 +37,7 @@ export function Links() {
   }
 
   return windowWidth >= 600 ? (
-    <ul className="flex gap-16 mobile:gap-3">
+    <ul className="flex gap-16 max-sm:gap-3">
       <li
         className={`${isActive(
           '#hero',

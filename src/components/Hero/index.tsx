@@ -1,23 +1,24 @@
-import { ArrowBigDown, Download, Github, Linkedin, Mail } from 'lucide-react'
+import { ArrowBigDown, Mail } from 'lucide-react'
+import { GithubIcon, LinkedinIcon } from '@/components/icons'
 
 export function Hero() {
   return (
     <section
       id="hero"
-      className="h-screen flex flex-col gap-8 pt-60 mobile:w-screen mobile:pt-32"
+      className="h-screen flex flex-col gap-8 pt-60 max-sm:w-screen max-sm:pt-32"
     >
       <div className="w-80 h-80 rounded-full bg-blue-800 absolute z-[-1] filter blur-5xl opacity-70" />
       <div className="flex flex-col gap-5">
         <div>
           <p>Olá, eu sou</p>
-          <h1 className="text-6xl font-semibold mobile:max-w-[230px]">
+          <h1 className="text-6xl font-semibold max-sm:max-w-[230px]">
             Lucas Ribeiro
           </h1>
         </div>
         <h2 className="text-2xl font-semibold text-green-400 ">
           {'>'} Desenvolvedor Full-Stack
         </h2>
-        <p className="text-zinc-400 max-w-[72%] mobile:max-w-[90%]">
+        <p className="text-zinc-400 max-w-[72%] max-sm:max-w-[90%]">
           {'//'} Sou um desenvolvedor Full-Stack especializado em{' '}
           <span className="text-blue-400 font-semibold">TypeScript</span>,
           utilizando{' '}
@@ -40,14 +41,14 @@ export function Hero() {
           target="_blank"
           className="hover:translate-y-[-4px] transition-all"
         >
-          <Github />
+          <GithubIcon />
         </a>
         <a
           href="https://www.linkedin.com/in/lucasadsr/"
           target="_blank"
           className="hover:translate-y-[-4px] transition-all"
         >
-          <Linkedin />
+          <LinkedinIcon />
         </a>
         <a
           href="mailto:lucasaraujodesa@hotmail.com"
@@ -59,14 +60,14 @@ export function Hero() {
 
         {/* <a href="../../../../public/resume.pdf" download>
           <button className="bg-blue-700 h-10 p-2 flex gap-3 rounded font-semibold hover:bg-blue-600 transition-all">
-            Baixar currículo <Download />{' '}
+            Baixar currículo <ArrowBigDown />{' '}
           </button>
         </a> */}
       </div>
 
       <a
         href="#projects"
-        className="absolute bottom-24 left-0 right-0 mx-auto w-fit animate-bounce mobile:bottom-1"
+        className="absolute bottom-24 left-0 right-0 mx-auto w-fit animate-bounce max-sm:bottom-1"
       >
         <ArrowBigDown
           size={36}
