@@ -1,9 +1,9 @@
 'use client'
 
-import { Skill } from '@/types/skill'
+import { type Skill } from '@/types/skill'
 import * as Tooltip from '@radix-ui/react-tooltip'
 import Image from 'next/image'
-import { Variants, motion } from 'framer-motion'
+import { type Variants, motion } from 'motion/react'
 
 interface SkillProps {
   skill: Skill

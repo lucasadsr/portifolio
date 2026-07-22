@@ -2,7 +2,7 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
-import { motion } from 'framer-motion'
+import { motion } from 'motion/react'
 
 const messageSchema = z.object({
   name: z
@@ -13,18 +13,18 @@ const messageSchema = z.object({
     .min(10, { message: 'Sua mensagem deve conter pelo menos 10 caracteres.' }),
 })
 
-type messageInputs = z.infer<typeof messageSchema>
+type MessageInputs = z.infer<typeof messageSchema>
 
 export function Form() {
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm<messageInputs>({
+  } = useForm<MessageInputs>({
     resolver: zodResolver(messageSchema),
   })
 
-  function sendMessage(data: messageInputs) {
+  function sendMessage(data: MessageInputs) {
     const { name, message } = data
 
     const fullMessage = `Olá, sou ${name}. \n \n ${message}`
@@ -38,7 +38,7 @@ export function Form() {
   return (
     <form
       onSubmit={handleSubmit(sendMessage)}
-      className="mx-auto mt-4 p-8 flex flex-col items-center w-[440px] gap-6 rounded-lg mobile:w-full mobile:p-1"
+      className="mx-auto mt-4 p-8 flex flex-col items-center w-[440px] gap-6 rounded-lg max-sm:w-full max-sm:p-1"
     >
       <motion.div
         className=" w-full"
