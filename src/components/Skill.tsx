@@ -31,15 +31,19 @@ const MotionTooltipContent = motion.create(Tooltip.Content)
 function ExpoIcon() {
   return (
     <svg
-      width={28}
-      height={28}
+      width={24}
+      height={24}
       viewBox="0 0 24 24"
-      fill="currentColor"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="3.2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
       className="text-white"
       aria-label="Expo Logo"
       role="img"
     >
-      <path d="M11.996 0c-.39 0-.76.17-.99.47L.34 14.16a1.275 1.275 0 00.22 1.77c.48.37 1.17.3 1.55-.17l9.886-12.63 9.886 12.63c.38.47 1.07.54 1.55.17.49-.38.56-1.07.18-1.55L12.986.47A1.25 1.25 0 0011.996 0zm-7.79 17.51a1.25 1.25 0 00-.99.47L.34 21.66a1.275 1.275 0 00.22 1.77c.48.37 1.17.3 1.55-.17l1.49-1.9h16.8l1.49 1.9c.38.47 1.07.54 1.55.17.49-.38.56-1.07.18-1.55l-2.88-3.68a1.25 1.25 0 00-.99-.47H4.206z" />
+      <path d="M5 15l7-7 7 7" />
     </svg>
   )
 }

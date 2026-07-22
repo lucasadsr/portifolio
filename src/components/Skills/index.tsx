@@ -23,12 +23,12 @@ export function Skills() {
         {/* Front-End Stack Card */}
         <div className="p-7 rounded-2xl bg-zinc-900/60 backdrop-blur-md border border-zinc-800/80 space-y-6 shadow-xl shadow-black/20 hover:border-emerald-500/30 transition-colors flex flex-col justify-between">
           <div className="space-y-6">
-            <div className="flex items-center gap-3 border-b border-zinc-800/80 pb-4">
-              <div className="p-2.5 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+            <div className="flex items-center gap-3 border-b border-zinc-800/80 pb-4 min-h-[76px]">
+              <div className="p-2.5 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 shrink-0">
                 <Code2 size={22} />
               </div>
               <div>
-                <h3 className="text-xl font-bold text-white">Front-End</h3>
+                <h3 className="text-xl font-bold text-white tracking-tight">Front-End</h3>
                 <p className="text-xs text-zinc-400">Interfaces web & mobile reativas</p>
               </div>
             </div>
@@ -45,12 +45,12 @@ export function Skills() {
         {/* Back-End Stack Card */}
         <div className="p-7 rounded-2xl bg-zinc-900/60 backdrop-blur-md border border-zinc-800/80 space-y-6 shadow-xl shadow-black/20 hover:border-cyan-500/30 transition-colors flex flex-col justify-between">
           <div className="space-y-6">
-            <div className="flex items-center gap-3 border-b border-zinc-800/80 pb-4">
-              <div className="p-2.5 rounded-xl bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
+            <div className="flex items-center gap-3 border-b border-zinc-800/80 pb-4 min-h-[76px]">
+              <div className="p-2.5 rounded-xl bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 shrink-0">
                 <Server size={22} />
               </div>
               <div>
-                <h3 className="text-xl font-bold text-white">Back-End</h3>
+                <h3 className="text-xl font-bold text-white tracking-tight">Back-End</h3>
                 <p className="text-xs text-zinc-400">APIs, serviços & bancos de dados</p>
               </div>
             </div>
@@ -67,12 +67,12 @@ export function Skills() {
         {/* DevOps & Tools Stack Card */}
         <div className="p-7 rounded-2xl bg-zinc-900/60 backdrop-blur-md border border-zinc-800/80 space-y-6 shadow-xl shadow-black/20 hover:border-violet-500/30 transition-colors flex flex-col justify-between md:col-span-2 lg:col-span-1">
           <div className="space-y-6">
-            <div className="flex items-center gap-3 border-b border-zinc-800/80 pb-4">
-              <div className="p-2.5 rounded-xl bg-violet-500/10 text-violet-400 border border-violet-500/20">
+            <div className="flex items-center gap-3 border-b border-zinc-800/80 pb-4 min-h-[76px]">
+              <div className="p-2.5 rounded-xl bg-violet-500/10 text-violet-400 border border-violet-500/20 shrink-0">
                 <Terminal size={22} />
               </div>
               <div>
-                <h3 className="text-xl font-bold text-white">DevOps & Ferramentas</h3>
+                <h3 className="text-lg font-bold text-white tracking-tight leading-tight">DevOps & Ferramentas</h3>
                 <p className="text-xs text-zinc-400">Cloud, CI/CD & utilitários</p>
               </div>
             </div>

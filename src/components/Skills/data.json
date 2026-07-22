@@ -154,5 +154,11 @@
     "src": "postman",
     "title": "Postman",
     "stack": "devops"
+  },
+  {
+    "id": 27,
+    "src": "vitest",
+    "title": "Vitest",
+    "stack": "devops"
   }
 ]
