@@ -28,6 +28,22 @@ const skillVariants: Variants = {
 
 const MotionTooltipContent = motion.create(Tooltip.Content)
 
+function ExpoIcon() {
+  return (
+    <svg
+      width={28}
+      height={28}
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      className="text-white"
+      aria-label="Expo Logo"
+      role="img"
+    >
+      <path d="M11.996 0c-.39 0-.76.17-.99.47L.34 14.16a1.275 1.275 0 00.22 1.77c.48.37 1.17.3 1.55-.17l9.886-12.63 9.886 12.63c.38.47 1.07.54 1.55.17.49-.38.56-1.07.18-1.55L12.986.47A1.25 1.25 0 0011.996 0zm-7.79 17.51a1.25 1.25 0 00-.99.47L.34 21.66a1.275 1.275 0 00.22 1.77c.48.37 1.17.3 1.55-.17l1.49-1.9h16.8l1.49 1.9c.38.47 1.07.54 1.55.17.49-.38.56-1.07.18-1.55l-2.88-3.68a1.25 1.25 0 00-.99-.47H4.206z" />
+    </svg>
+  )
+}
+
 export function Skill({ skill }: SkillProps) {
   const { src, title, stack } = skill
 
@@ -42,14 +58,20 @@ export function Skill({ skill }: SkillProps) {
             viewport={{ once: true }}
             className="p-3 rounded-2xl bg-zinc-900/70 border border-zinc-800/80 hover:border-emerald-500/50 hover:bg-zinc-800/80 hover:shadow-lg hover:shadow-emerald-500/10 hover:-translate-y-1.5 transition-all duration-300 flex items-center justify-center cursor-pointer group"
           >
-            <Image
-              src={`https://skillicons.dev/icons?i=${src}`}
-              alt={title}
-              width={52}
-              height={52}
-              quality={90}
-              className="group-hover:scale-105 transition-transform duration-300"
-            />
+            {src === 'expo' ? (
+              <div className="w-[52px] h-[52px] rounded-xl bg-zinc-950 border border-zinc-800/90 flex items-center justify-center shadow-md">
+                <ExpoIcon />
+              </div>
+            ) : (
+              <Image
+                src={`https://skillicons.dev/icons?i=${src}`}
+                alt={title}
+                width={52}
+                height={52}
+                quality={90}
+                className="group-hover:scale-105 transition-transform duration-300"
+              />
+            )}
           </motion.div>
         </Tooltip.Trigger>
         <Tooltip.Portal>
