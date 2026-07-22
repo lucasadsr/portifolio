@@ -81,29 +81,29 @@ export function Hero() {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 bg-clip-text text-transparent"
         >
-          Desenvolvedor Full-Stack
+          Engenheiro de Software
         </motion.h2>
 
         {/* Bio */}
-        <motion.p
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="text-zinc-300 leading-relaxed text-base sm:text-lg max-w-2xl"
+          className="text-zinc-300 leading-relaxed text-base sm:text-lg max-w-2xl space-y-2.5"
         >
-          Especializado em{' '}
-          <span className="text-emerald-400 font-semibold">TypeScript</span>,
-          utilizando{' '}
-          <span className="text-emerald-400 font-semibold">Next.js</span> e{' '}
-          <span className="text-emerald-400 font-semibold">Fastify</span> para
-          construir aplicações web eficientes e de alta performance. Experiência robusta com{' '}
-          <span className="text-emerald-400 font-semibold">Tailwind CSS</span>,{' '}
-          <span className="text-emerald-400 font-semibold">Prisma</span> e bancos de dados{' '}
-          <span className="text-emerald-400 font-semibold">
-            MySQL, PostgreSQL e MongoDB
-          </span>
-          .
-        </motion.p>
+          <p>
+            Engenheiro de Software focado na criação de aplicações{' '}
+            <span className="text-emerald-400 font-semibold">web e mobile</span>{' '}
+            modernas com{' '}
+            <span className="text-emerald-400 font-semibold">Next.js</span>,{' '}
+            <span className="text-emerald-400 font-semibold">React</span>,{' '}
+            <span className="text-emerald-400 font-semibold">React Native</span> e{' '}
+            <span className="text-emerald-400 font-semibold">TypeScript</span>.
+          </p>
+          <p className="text-zinc-400 text-sm sm:text-base">
+            Atualmente atuando no setor fintech/precatórios com foco em interfaces fluidas, gerenciamento de estado assíncrono e arquitetura escalável.
+          </p>
+        </motion.div>
 
         {/* Actions & Social Links */}
         <motion.div
@@ -143,8 +143,8 @@ export function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.8 }}
-        href="#projects"
-        aria-label="Rolar para projetos"
+        href="#experience"
+        aria-label="Rolar para histórico profissional"
         className="absolute bottom-8 left-1/2 -translate-x-1/2 p-2.5 rounded-full bg-zinc-900/60 border border-zinc-800 text-emerald-400 hover:text-emerald-300 hover:border-emerald-500/40 hover:bg-zinc-800 transition-all animate-bounce"
       >
         <ChevronDown size={22} />

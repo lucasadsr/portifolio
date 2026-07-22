@@ -7,6 +7,7 @@ import { motion } from 'motion/react'
 
 const NAV_ITEMS = [
   { label: 'Início', href: '#hero', id: 'hero' },
+  { label: 'Experiência', href: '#experience', id: 'experience' },
   { label: 'Projetos', href: '#projects', id: 'projects' },
   { label: 'Habilidades', href: '#skills', id: 'skills' },
   { label: 'Contato', href: '#contact', id: 'contact' },
