@@ -2,19 +2,19 @@ import Image from 'next/image'
 import ArrowImage from '@/../public/arrow-ornament.png'
 import projects from './data.json'
 import { Project } from '@/components/Project'
-import { Github } from 'lucide-react'
+import { GithubIcon } from '@/components/icons'
 
 export default function Projects() {
   return (
-    <section id="projects" className="pt-24 mobile:pt-16">
+    <section id="projects" className="pt-24 max-sm:pt-16">
       <div className="flex">
-        <p className="text-6xl text-green-400 font-semibold w-[400px] leading-tight mobile:max-w-screen mobile:text-4xl mobile:text-center mobile:mb-12">
+        <p className="text-6xl text-green-400 font-semibold w-[400px] leading-tight max-sm:max-w-screen max-sm:text-4xl max-sm:text-center max-sm:mb-12">
           Projetos que já fiz
         </p>
         <Image
           src={ArrowImage}
           alt="Arrow pointing to my projects"
-          className="mobile:hidden"
+          className="max-sm:hidden"
         />
       </div>
 
@@ -29,7 +29,7 @@ export default function Projects() {
         href="https://github.com/lucasadsr"
         target="_blank"
       >
-        <Github />
+        <GithubIcon />
         Ver todos os projetos
       </a>
     </section>

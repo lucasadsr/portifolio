@@ -1,9 +1,10 @@
 'use client'
 
-import { Project } from '@/types/project'
-import { Github, Globe } from 'lucide-react'
+import { type Project } from '@/types/project'
+import { Globe } from 'lucide-react'
 import Image from 'next/image'
-import { Variants, motion } from 'framer-motion'
+import { type Variants, motion } from 'motion/react'
+import { GithubIcon } from '@/components/icons'
 
 interface ProjectProps {
   project: Project
@@ -33,7 +34,7 @@ export function Project({ project }: ProjectProps) {
       variants={projectVariants}
       initial="offscreen"
       whileInView="onscreen"
-      className="flex gap-8 mobile:flex-col mobile:w-full mobile:gap-3"
+      className="flex gap-8 max-sm:flex-col max-sm:w-full max-sm:gap-3"
     >
       <a
         href={repo}
@@ -41,7 +42,7 @@ export function Project({ project }: ProjectProps) {
         className="rounded-md min-w-[556px] h-fit hover:shadow-project transition-all"
       >
         <Image
-          className="rounded-md mobile:w-[300px]"
+          className="rounded-md max-sm:w-[300px]"
           src={image}
           alt=""
           width={556}
@@ -50,7 +51,7 @@ export function Project({ project }: ProjectProps) {
         />
       </a>
       <div className="flex flex-col gap-4">
-        <p className="text-5xl font-semibold text-white mobile:text-4xl">
+        <p className="text-5xl font-semibold text-white max-sm:text-4xl">
           {name}
         </p>
         <p className="text-zinc-400">{description}</p>
@@ -69,7 +70,7 @@ export function Project({ project }: ProjectProps) {
             href={repo}
             target="_blank"
           >
-            <Github /> Repositório
+            <GithubIcon /> Repositório
           </a>
           {deploy && (
             <a

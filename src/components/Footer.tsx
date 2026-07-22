@@ -1,8 +1,9 @@
-import { Github, Linkedin, Mail } from 'lucide-react'
+import { Mail } from 'lucide-react'
+import { GithubIcon, LinkedinIcon } from '@/components/icons'
 
 export function Footer() {
   return (
-    <section className="bg-zinc-800 flex items-center justify-center gap-16 h-14 mobile:justify-evenly mobile:gap-0">
+    <section className="bg-zinc-800 flex items-center justify-center gap-16 h-14 max-sm:justify-evenly max-sm:gap-0">
       <p className="text-zinc-100">
         Feito por{' '}
         <a
@@ -18,14 +19,14 @@ export function Footer() {
           target="_blank"
           className="hover:text-green-200"
         >
-          <Github />
+          <GithubIcon />
         </a>
         <a
           href="https://www.linkedin.com/in/lucasadsr/"
           target="_blank"
           className="hover:text-green-200"
         >
-          <Linkedin />
+          <LinkedinIcon />
         </a>
         <a
           href="mailto:lucasaraujodesa@hotmail.com"
