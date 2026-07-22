@@ -1,37 +1,60 @@
 import { Skill } from '@/components/Skill'
 import skills from './data.json'
+import { Code2, Server } from 'lucide-react'
 
 export function Skills() {
   return (
-    <section id="skills" className="mt-16 mb-4 pt-24 max-sm:pt-16">
-      <p className="text-6xl text-green-400 font-semibold text-center pb-24 max-sm:text-4xl max-sm:pb-12">
-        Habilidades
-      </p>
+    <section id="skills" className="py-24 space-y-12">
+      <div className="space-y-2">
+        <span className="text-emerald-400 text-sm font-semibold tracking-wider uppercase">
+          Tech Stack
+        </span>
+        <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white">
+          Habilidades & Tecnologias
+        </h2>
+        <p className="text-zinc-400 text-base max-w-xl">
+          Ferramentas e tecnologias que utilizo no dia a dia para construir produtos modernos.
+        </p>
+      </div>
 
-      <div className="flex justify-around items-start max-sm:flex-col max-sm:gap-8">
-        <div className="h-fit">
-          <p className="text-6xl text-green-400 font-semibold mb-8 text-center max-sm:text-3xl max-sm:mb-4">
-            Front-End
-          </p>
-          <div className="flex justify-center flex-wrap gap-4 w-[416px] max-sm:w-full">
-            {skills.map((skill) => {
-              return skill.stack === 'front-end' ? (
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {/* Front-End Stack Card */}
+        <div className="p-8 rounded-2xl bg-zinc-900/60 backdrop-blur-md border border-zinc-800/80 space-y-6 shadow-xl shadow-black/20 hover:border-zinc-700/80 transition-colors">
+          <div className="flex items-center gap-3 border-b border-zinc-800/80 pb-4">
+            <div className="p-2.5 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+              <Code2 size={22} />
+            </div>
+            <div>
+              <h3 className="text-xl font-bold text-white">Front-End</h3>
+              <p className="text-xs text-zinc-400">Interfaces dinâmicas e reativas</p>
+            </div>
+          </div>
+          <div className="flex flex-wrap gap-4">
+            {skills.map((skill) =>
+              skill.stack === 'front-end' ? (
                 <Skill key={skill.id} skill={skill} />
-              ) : null
-            })}
+              ) : null,
+            )}
           </div>
         </div>
 
-        <div className="h-fit">
-          <p className="text-6xl text-green-400 font-semibold mb-8 text-center max-sm:text-3xl max-sm:mb-4">
-            Back-End
-          </p>
-          <div className="flex justify-center flex-wrap gap-4 w-[416px] max-sm:w-full">
-            {skills.map((skill) => {
-              return skill.stack === 'back-end' ? (
+        {/* Back-End Stack Card */}
+        <div className="p-8 rounded-2xl bg-zinc-900/60 backdrop-blur-md border border-zinc-800/80 space-y-6 shadow-xl shadow-black/20 hover:border-zinc-700/80 transition-colors">
+          <div className="flex items-center gap-3 border-b border-zinc-800/80 pb-4">
+            <div className="p-2.5 rounded-xl bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
+              <Server size={22} />
+            </div>
+            <div>
+              <h3 className="text-xl font-bold text-white">Back-End</h3>
+              <p className="text-xs text-zinc-400">APIs, serviços e bancos de dados</p>
+            </div>
+          </div>
+          <div className="flex flex-wrap gap-4">
+            {skills.map((skill) =>
+              skill.stack === 'back-end' ? (
                 <Skill key={skill.id} skill={skill} />
-              ) : null
-            })}
+              ) : null,
+            )}
           </div>
         </div>
       </div>
