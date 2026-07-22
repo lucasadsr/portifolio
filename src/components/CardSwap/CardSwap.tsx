@@ -6,6 +6,7 @@ import React, {
   ReactElement,
   ReactNode,
   RefObject,
+  useCallback,
   useEffect,
   useImperativeHandle,
   useMemo,
@@ -81,27 +82,30 @@ const CardSwap = forwardRef<CardSwapRef, CardSwapProps>(({
   easing = 'elastic',
   children
 }, ref) => {
-  const config =
-    easing === 'elastic'
-      ? {
-          ease: 'power2.out',
-          durDrop: 0.5,
-          durMove: 0.5,
-          durReturn: 0.5,
-          promoteOverlap: 0.5,
-          returnDelay: 0.08
-        }
-      : {
-          ease: 'power1.inOut',
-          durDrop: 0.5,
-          durMove: 0.5,
-          durReturn: 0.5,
-          promoteOverlap: 0.45,
-          returnDelay: 0.08
-        };
+  const config = useMemo(
+    () =>
+      easing === 'elastic'
+        ? {
+            ease: 'power2.out',
+            durDrop: 0.5,
+            durMove: 0.5,
+            durReturn: 0.5,
+            promoteOverlap: 0.5,
+            returnDelay: 0.08
+          }
+        : {
+            ease: 'power1.inOut',
+            durDrop: 0.5,
+            durMove: 0.5,
+            durReturn: 0.5,
+            promoteOverlap: 0.45,
+            returnDelay: 0.08
+          },
+    [easing]
+  );
 
   const childArr = useMemo(() => Children.toArray(children) as ReactElement<CardProps>[], [children]);
-  const refs = useMemo<CardRef[]>(() => childArr.map(() => React.createRef<HTMLDivElement>()), [childArr.length]);
+  const refs = useMemo<CardRef[]>(() => childArr.map(() => React.createRef<HTMLDivElement>()), [childArr]);
 
   const order = useRef<number[]>(Array.from({ length: childArr.length }, (_, i) => i));
 
@@ -110,21 +114,12 @@ const CardSwap = forwardRef<CardSwapRef, CardSwapProps>(({
   const container = useRef<HTMLDivElement>(null);
   const isAnimating = useRef(false);
 
-  const resetTimer = () => {
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current);
-    }
-    intervalRef.current = window.setInterval(() => {
-      swapNext();
-    }, delay);
-  };
-
-  const swapNext = () => {
+  const swapNext = useCallback(() => {
     if (isAnimating.current || order.current.length < 2) return;
     isAnimating.current = true;
 
     const [front, ...rest] = order.current;
-    const elFront = refs[front].current;
+    const elFront = refs[front]?.current;
     if (!elFront) {
       isAnimating.current = false;
       return;
@@ -146,7 +141,7 @@ const CardSwap = forwardRef<CardSwapRef, CardSwapProps>(({
 
     tl.addLabel('promote', `-=${config.durDrop * config.promoteOverlap}`);
     rest.forEach((idx, i) => {
-      const el = refs[idx].current;
+      const el = refs[idx]?.current;
       if (!el) return;
       const slot = makeSlot(i, cardDistance, verticalDistance, refs.length);
       tl.set(el, { zIndex: slot.zIndex }, 'promote');
@@ -183,15 +178,15 @@ const CardSwap = forwardRef<CardSwapRef, CardSwapProps>(({
       },
       'return'
     );
-  };
+  }, [cardDistance, config, refs, verticalDistance]);
 
-  const swapPrev = () => {
+  const swapPrev = useCallback(() => {
     if (isAnimating.current || order.current.length < 2) return;
     isAnimating.current = true;
 
     const back = order.current[order.current.length - 1];
     const rest = order.current.slice(0, -1);
-    const elBack = refs[back].current;
+    const elBack = refs[back]?.current;
     if (!elBack) {
       isAnimating.current = false;
       return;
@@ -213,7 +208,7 @@ const CardSwap = forwardRef<CardSwapRef, CardSwapProps>(({
 
     tl.addLabel('promote', `-=${config.durDrop * config.promoteOverlap}`);
     rest.forEach((idx, i) => {
-      const el = refs[idx].current;
+      const el = refs[idx]?.current;
       if (!el) return;
       const slot = makeSlot(i + 1, cardDistance, verticalDistance, refs.length);
       tl.set(el, { zIndex: slot.zIndex }, 'promote');
@@ -250,7 +245,16 @@ const CardSwap = forwardRef<CardSwapRef, CardSwapProps>(({
       },
       'return'
     );
-  };
+  }, [cardDistance, config, refs, verticalDistance]);
+
+  const resetTimer = useCallback(() => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+    }
+    intervalRef.current = window.setInterval(() => {
+      swapNext();
+    }, delay);
+  }, [delay, swapNext]);
 
   useImperativeHandle(ref, () => ({
     swapNext: () => {
@@ -265,7 +269,11 @@ const CardSwap = forwardRef<CardSwapRef, CardSwapProps>(({
 
   useEffect(() => {
     const total = refs.length;
-    refs.forEach((r, i) => placeNow(r.current!, makeSlot(i, cardDistance, verticalDistance, total), skewAmount));
+    refs.forEach((r, i) => {
+      if (r.current) {
+        placeNow(r.current, makeSlot(i, cardDistance, verticalDistance, total), skewAmount);
+      }
+    });
 
     intervalRef.current = window.setInterval(swapNext, delay);
 
@@ -292,7 +300,7 @@ const CardSwap = forwardRef<CardSwapRef, CardSwapProps>(({
       clearInterval(intervalRef.current);
       tlRef.current?.kill();
     };
-  }, [cardDistance, verticalDistance, delay, pauseOnHover, skewAmount, easing]);
+  }, [cardDistance, verticalDistance, delay, pauseOnHover, skewAmount, refs, swapNext]);
 
   const rendered = childArr.map((child, i) =>
     isValidElement<CardProps>(child)
