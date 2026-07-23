@@ -217,7 +217,7 @@ export function Projects() {
                 src={currentMobileProject.image}
                 alt={currentMobileProject.name}
                 fill
-                sizes="100vw"
+                sizes="(max-width: 768px) 100vw, 640px"
                 className="object-cover object-top"
                 unoptimized={currentMobileProject.image.startsWith('http')}
               />
