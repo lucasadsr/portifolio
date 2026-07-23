@@ -79,7 +79,7 @@ export function Form() {
         </label>
         <textarea
           id="message"
-          placeholder="Escreva sua mensagem ou detalhes do projeto..."
+          placeholder="Escreva sua mensagem aqui..."
           rows={5}
           className="w-full bg-zinc-950/80 border border-zinc-800 text-zinc-100 placeholder:text-zinc-500 rounded-xl px-4 py-3 outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition-all text-sm resize-none"
           {...register('message')}

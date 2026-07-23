@@ -8,10 +8,10 @@ export function Contact() {
           Contato
         </span>
         <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white">
-          Vamos construir algo juntos?
+          Vamos nos conectar?
         </h2>
         <p className="text-zinc-400 text-base">
-          Envie uma mensagem direta para trocarmos uma ideia sobre seu projeto ou oportunidade.
+          Envie uma mensagem para trocarmos uma ideia sobre tecnologia, desenvolvimento ou networking.
         </p>
       </div>
 
