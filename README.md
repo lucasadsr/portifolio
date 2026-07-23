@@ -1,4 +1,4 @@
-# ✨ Lucas Ribeiro — Developer Portfolio
+# 👨‍💻 Lucas Ribeiro — Developer Portfolio
 
 <div align="center">
 
@@ -79,6 +79,6 @@ Abra [http://localhost:3000](http://localhost:3000) no seu navegador para ver o 
 
 <div align="center">
 
-Desenvolvido com 💜 por **Lucas Ribeiro**
+Desenvolvido com 💚 por **Lucas Ribeiro**
 
-</div>
+</div>
