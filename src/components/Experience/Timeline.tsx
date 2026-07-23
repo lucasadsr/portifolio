@@ -101,7 +101,7 @@ export function Timeline({ experiences }: TimelineProps) {
                     : 'md:ml-auto md:w-[calc(50%-2.5rem)] md:text-left'
                 }`}
               >
-                <div className="p-6 sm:p-7 rounded-2xl bg-zinc-900/70 border border-zinc-800/90 backdrop-blur-xl hover:border-emerald-500/40 hover:bg-zinc-900/90 transition-all duration-300 shadow-xl hover:shadow-emerald-500/10 group-hover:-translate-y-1">
+                <div className="p-6 sm:p-7 rounded-2xl bg-zinc-900/70 border border-zinc-800/90 backdrop-blur-md md:backdrop-blur-xl hover:border-emerald-500/40 hover:bg-zinc-900/90 transition-all duration-300 shadow-xl hover:shadow-emerald-500/10 group-hover:-translate-y-1 transform-gpu">
                   {/* Date Badge & Location Header */}
                   <div className="flex flex-wrap items-center justify-between gap-2 mb-4 text-xs">
                     <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 font-medium">

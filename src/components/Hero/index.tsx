@@ -5,43 +5,49 @@ import { GithubIcon, LinkedinIcon } from '@/components/icons'
 import { motion } from 'motion/react'
 import dynamic from 'next/dynamic'
 
+import { useIsMobile } from '@/hooks/useIsMobile'
+
 const FaultyTerminal = dynamic(
   () => import('@/components/FaultyTerminal/FaultyTerminal'),
   { ssr: false },
 )
 
 export function Hero() {
+  const isMobile = useIsMobile(768)
+
   return (
     <section
       id="hero"
       className="relative w-full min-h-screen flex flex-col items-center justify-center overflow-hidden"
     >
-      {/* FaultyTerminal Interactive WebGL Background (Edge-to-Edge 100% Screen) */}
-      <div className="absolute inset-0 -z-10 w-full h-full opacity-40 pointer-events-none">
-        <FaultyTerminal
-          scale={3}
-          gridMul={[2, 1]}
-          digitSize={1.9}
-          timeScale={0.5}
-          pause={false}
-          scanlineIntensity={0.5}
-          glitchAmount={1}
-          flickerAmount={1}
-          noiseAmp={1}
-          chromaticAberration={0}
-          dither={0}
-          curvature={0.1}
-          tint="#A7EF9E"
-          mouseReact
-          mouseStrength={0.5}
-          pageLoadAnimation
-          brightness={0.6}
-        />
-      </div>
+      {/* FaultyTerminal WebGL Background - Rendered only on Desktop for optimal mobile performance */}
+      {isMobile === false && (
+        <div className="absolute inset-0 -z-10 w-full h-full opacity-40 pointer-events-none">
+          <FaultyTerminal
+            scale={3}
+            gridMul={[2, 1]}
+            digitSize={1.9}
+            timeScale={0.5}
+            pause={false}
+            scanlineIntensity={0.5}
+            glitchAmount={1}
+            flickerAmount={1}
+            noiseAmp={1}
+            chromaticAberration={0}
+            dither={0}
+            curvature={0.1}
+            tint="#A7EF9E"
+            mouseReact
+            mouseStrength={0.5}
+            pageLoadAnimation
+            brightness={0.6}
+          />
+        </div>
+      )}
 
-      {/* Background Ambient Glows */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-emerald-500/10 rounded-full blur-[140px] pointer-events-none -z-10" />
-      <div className="absolute top-1/3 left-1/4 w-[350px] h-[350px] bg-cyan-500/10 rounded-full blur-[120px] pointer-events-none -z-10" />
+      {/* Lightweight CSS Background Ambient Glows */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] sm:w-[500px] h-[320px] sm:h-[500px] bg-emerald-500/10 rounded-full blur-[80px] md:blur-[140px] pointer-events-none -z-10 transform-gpu" />
+      <div className="absolute top-1/3 left-1/4 w-[240px] sm:w-[350px] h-[240px] sm:h-[350px] bg-cyan-500/10 rounded-full blur-[70px] md:blur-[120px] pointer-events-none -z-10 transform-gpu" />
 
       {/* Bottom Gradient Fade Mask for Seamless Transition */}
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black via-black/60 to-transparent pointer-events-none -z-10" />

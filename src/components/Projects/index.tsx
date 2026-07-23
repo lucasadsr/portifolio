@@ -8,11 +8,13 @@ import { PROJECTS } from '@/constants/projects'
 import type { Project } from '@/types/project'
 import { CardSwap, Card, type CardSwapRef } from '@/components/CardSwap/CardSwap'
 import { GithubIcon } from '@/components/icons'
+import { useIsMobile } from '@/hooks/useIsMobile'
 
 export function Projects() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
   const [mobileIndex, setMobileIndex] = useState(0)
   const cardSwapRef = useRef<CardSwapRef>(null)
+  const isMobile = useIsMobile(768)
 
   const currentMobileProject = PROJECTS[mobileIndex]
 
@@ -96,104 +98,106 @@ export function Projects() {
       </div>
 
       {/* Desktop 3D CardSwap Section */}
-      <div className="hidden md:flex relative py-8 justify-center items-center min-h-[500px] sm:min-h-[560px]">
-        <CardSwap
-          ref={cardSwapRef}
-          width={680}
-          height={480}
-          cardDistance={35}
-          verticalDistance={25}
-          delay={4500}
-          pauseOnHover={true}
-          straightenOnHover={true}
-          paused={Boolean(selectedProject)}
-          skewAmount={4}
-        >
-          {PROJECTS.map((project, index) => (
-            <Card
-              key={project.id}
-              onClick={() => setSelectedProject(project)}
-              customClass="group cursor-pointer flex flex-col justify-between overflow-hidden bg-zinc-950/95 backdrop-blur-2xl border border-zinc-800/80 p-5 sm:p-6 rounded-2xl shadow-2xl transition-all duration-300 hover:border-emerald-500/50"
-            >
-              {/* Project Image Preview */}
-              <div className="relative w-full h-44 sm:h-52 overflow-hidden rounded-xl bg-zinc-900 border border-zinc-800/60 flex-shrink-0">
-                <Image
-                  src={project.image}
-                  alt={project.name}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 640px"
-                  className="object-cover object-top group-hover:scale-105 transition-transform duration-500 ease-out"
-                  unoptimized={project.image.startsWith('http')}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/20 to-transparent opacity-80" />
-                
-                {/* Badge Number */}
-                <span className="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-zinc-950/80 backdrop-blur-md border border-zinc-800 text-xs text-emerald-400 font-mono font-medium shadow-md">
-                  0{index + 1} / 0{PROJECTS.length}
-                </span>
+      {isMobile === false && (
+        <div className="hidden md:flex relative py-8 justify-center items-center min-h-[500px] sm:min-h-[560px]">
+          <CardSwap
+            ref={cardSwapRef}
+            width={680}
+            height={480}
+            cardDistance={35}
+            verticalDistance={25}
+            delay={4500}
+            pauseOnHover={true}
+            straightenOnHover={true}
+            paused={Boolean(selectedProject)}
+            skewAmount={4}
+          >
+            {PROJECTS.map((project, index) => (
+              <Card
+                key={project.id}
+                onClick={() => setSelectedProject(project)}
+                customClass="group cursor-pointer flex flex-col justify-between overflow-hidden bg-zinc-950/95 backdrop-blur-md md:backdrop-blur-2xl border border-zinc-800/80 p-5 sm:p-6 rounded-2xl shadow-2xl transition-all duration-300 hover:border-emerald-500/50 transform-gpu"
+              >
+                {/* Project Image Preview */}
+                <div className="relative w-full h-44 sm:h-52 overflow-hidden rounded-xl bg-zinc-900 border border-zinc-800/60 flex-shrink-0">
+                  <Image
+                    src={project.image}
+                    alt={project.name}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 640px"
+                    className="object-cover object-top group-hover:scale-105 transition-transform duration-500 ease-out"
+                    unoptimized={project.image.startsWith('http')}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/20 to-transparent opacity-80" />
+                  
+                  {/* Badge Number */}
+                  <span className="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-zinc-950/80 backdrop-blur-md border border-zinc-800 text-xs text-emerald-400 font-mono font-medium shadow-md">
+                    0{index + 1} / 0{PROJECTS.length}
+                  </span>
 
-                {/* Expand Hint Overlay */}
-                <div className="absolute top-3 left-3 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-zinc-950/80 backdrop-blur-md border border-zinc-800/80 text-[11px] text-zinc-300 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <Maximize2 size={12} className="text-emerald-400" />
-                  Expandir
-                </div>
-              </div>
-
-              {/* Project Details */}
-              <div className="flex flex-col justify-between flex-grow mt-3 space-y-4">
-                <div className="space-y-1.5">
-                  <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight group-hover:text-emerald-400 transition-colors">
-                    {project.name}
-                  </h3>
-                  <p className="text-zinc-400 text-xs sm:text-sm leading-relaxed line-clamp-2">
-                    {project.description}
-                  </p>
-                </div>
-
-                <div className="space-y-3 pt-1">
-                  {/* Tech Stack Badges */}
-                  <div className="flex flex-wrap gap-1.5 sm:gap-2">
-                    {project.techs.map((tech, i) => (
-                      <span
-                        key={i}
-                        className="px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-medium"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* Action Buttons */}
-                  <div className="flex items-center gap-3 pt-1">
-                    {project.repo && (
-                      <a
-                        href={project.repo}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-zinc-800/90 text-zinc-200 hover:text-white hover:bg-zinc-700 text-xs sm:text-sm font-medium transition-all shadow-md active:scale-95"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        <GithubIcon /> Repositório
-                      </a>
-                    )}
-                    {project.deploy && (
-                      <a
-                        href={project.deploy}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-emerald-600 text-white hover:bg-emerald-500 text-xs sm:text-sm font-medium transition-all shadow-md shadow-emerald-600/20 active:scale-95"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        <ExternalLink size={14} /> Deploy
-                      </a>
-                    )}
+                  {/* Expand Hint Overlay */}
+                  <div className="absolute top-3 left-3 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-zinc-950/80 backdrop-blur-md border border-zinc-800/80 text-[11px] text-zinc-300 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <Maximize2 size={12} className="text-emerald-400" />
+                    Expandir
                   </div>
                 </div>
-              </div>
-            </Card>
-          ))}
-        </CardSwap>
-      </div>
+
+                {/* Project Details */}
+                <div className="flex flex-col justify-between flex-grow mt-3 space-y-4">
+                  <div className="space-y-1.5">
+                    <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight group-hover:text-emerald-400 transition-colors">
+                      {project.name}
+                    </h3>
+                    <p className="text-zinc-400 text-xs sm:text-sm leading-relaxed line-clamp-2">
+                      {project.description}
+                    </p>
+                  </div>
+
+                  <div className="space-y-3 pt-1">
+                    {/* Tech Stack Badges */}
+                    <div className="flex flex-wrap gap-1.5 sm:gap-2">
+                      {project.techs.map((tech, i) => (
+                        <span
+                          key={i}
+                          className="px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-medium"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* Action Buttons */}
+                    <div className="flex items-center gap-3 pt-1">
+                      {project.repo && (
+                        <a
+                          href={project.repo}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-zinc-800/90 text-zinc-200 hover:text-white hover:bg-zinc-700 text-xs sm:text-sm font-medium transition-all shadow-md active:scale-95"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <GithubIcon /> Repositório
+                        </a>
+                      )}
+                      {project.deploy && (
+                        <a
+                          href={project.deploy}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-emerald-600 text-white hover:bg-emerald-500 text-xs sm:text-sm font-medium transition-all shadow-md shadow-emerald-600/20 active:scale-95"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <ExternalLink size={14} /> Deploy
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </Card>
+            ))}
+          </CardSwap>
+        </div>
+      )}
 
       {/* Touch-Optimized Mobile Showcase (< md) */}
       <div className="md:hidden space-y-4">
@@ -204,7 +208,7 @@ export function Projects() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -15 }}
             transition={{ duration: 0.2 }}
-            className="group cursor-pointer flex flex-col justify-between overflow-hidden bg-zinc-950/95 backdrop-blur-2xl border border-zinc-800/80 p-5 rounded-2xl shadow-xl hover:border-emerald-500/50"
+            className="group cursor-pointer flex flex-col justify-between overflow-hidden bg-zinc-950/95 backdrop-blur-md border border-zinc-800/80 p-5 rounded-2xl shadow-xl hover:border-emerald-500/50 transform-gpu"
             onClick={() => setSelectedProject(currentMobileProject)}
           >
             {/* Mobile Card Image Preview */}
