@@ -4,14 +4,13 @@ import React, { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
 import { ChevronLeft, ChevronRight, ExternalLink, Sparkles, X, Maximize2 } from 'lucide-react'
 import { motion, AnimatePresence } from 'motion/react'
-import projects from './data.json'
+import { PROJECTS } from '@/constants/projects'
+import type { Project } from '@/types/project'
 import { CardSwap, Card, type CardSwapRef } from '@/components/CardSwap/CardSwap'
 import { GithubIcon } from '@/components/icons'
 
-type ProjectType = typeof projects[number]
-
 export function Projects() {
-  const [selectedProject, setSelectedProject] = useState<ProjectType | null>(null)
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null)
   const cardSwapRef = useRef<CardSwapRef>(null)
 
   // Handle ESC keyboard navigation to close modal
@@ -94,7 +93,7 @@ export function Projects() {
           pauseOnHover={true}
           skewAmount={4}
         >
-          {projects.map((project, index) => (
+          {PROJECTS.map((project, index) => (
             <Card
               key={project.id}
               onClick={() => setSelectedProject(project)}
@@ -114,7 +113,7 @@ export function Projects() {
                 
                 {/* Badge Number */}
                 <span className="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-zinc-950/80 backdrop-blur-md border border-zinc-800 text-xs text-emerald-400 font-mono font-medium shadow-md">
-                  0{index + 1} / 0{projects.length}
+                  0{index + 1} / 0{PROJECTS.length}
                 </span>
 
                 {/* Expand Hint Overlay */}

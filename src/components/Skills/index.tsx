@@ -1,5 +1,5 @@
 import { Skill } from '@/components/Skill'
-import skills from './data.json'
+import { SKILLS } from '@/constants/skills'
 import { Code2, Server, Cpu, Terminal } from 'lucide-react'
 
 export function Skills() {
@@ -33,7 +33,7 @@ export function Skills() {
               </div>
             </div>
             <div className="flex flex-wrap gap-3">
-              {skills.map((skill) =>
+              {SKILLS.map((skill) =>
                 skill.stack === 'front-end' ? (
                   <Skill key={skill.id} skill={skill} />
                 ) : null,
@@ -55,7 +55,7 @@ export function Skills() {
               </div>
             </div>
             <div className="flex flex-wrap gap-3">
-              {skills.map((skill) =>
+              {SKILLS.map((skill) =>
                 skill.stack === 'back-end' ? (
                   <Skill key={skill.id} skill={skill} />
                 ) : null,
@@ -77,7 +77,7 @@ export function Skills() {
               </div>
             </div>
             <div className="flex flex-wrap gap-3">
-              {skills.map((skill) =>
+              {SKILLS.map((skill) =>
                 skill.stack === 'devops' ? (
                   <Skill key={skill.id} skill={skill} />
                 ) : null,

@@ -4,6 +4,6 @@ export interface Project {
   description: string
   techs: string[]
   image: string
-  repo: string
-  deploy: string
+  repo?: string
+  deploy?: string
 }
