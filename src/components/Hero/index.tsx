@@ -58,8 +58,8 @@ export function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-medium w-fit shadow-sm shadow-emerald-500/10"
+          transition={{ duration: 0.4, ease: 'easeOut' }}
+          className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-medium w-fit shadow-sm shadow-emerald-500/10 transform-gpu [will-change:transform,opacity]"
         >
           <span className="relative flex h-2 w-2">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
@@ -72,8 +72,8 @@ export function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="space-y-2"
+          transition={{ duration: 0.4, delay: isMobile ? 0.05 : 0.1, ease: 'easeOut' }}
+          className="space-y-2 transform-gpu [will-change:transform,opacity]"
         >
           <p className="text-zinc-400 text-lg font-medium">Olá, eu sou</p>
           <h1 className="text-5xl sm:text-7xl font-extrabold tracking-tight text-white">
@@ -84,8 +84,8 @@ export function Hero() {
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 bg-clip-text text-transparent"
+          transition={{ duration: 0.4, delay: isMobile ? 0.1 : 0.2, ease: 'easeOut' }}
+          className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 bg-clip-text text-transparent transform-gpu [will-change:transform,opacity]"
         >
           Engenheiro de Software
         </motion.h2>
@@ -94,8 +94,8 @@ export function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="text-zinc-300 leading-relaxed text-base sm:text-lg max-w-2xl space-y-2.5"
+          transition={{ duration: 0.4, delay: isMobile ? 0.15 : 0.3, ease: 'easeOut' }}
+          className="text-zinc-300 leading-relaxed text-base sm:text-lg max-w-2xl space-y-2.5 transform-gpu [will-change:transform,opacity]"
         >
           <p>
             Engenheiro de Software focado na criação de aplicações{' '}
@@ -115,8 +115,8 @@ export function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="flex flex-wrap gap-4 items-center pt-2"
+          transition={{ duration: 0.4, delay: isMobile ? 0.2 : 0.4, ease: 'easeOut' }}
+          className="flex flex-wrap gap-4 items-center pt-2 transform-gpu [will-change:transform,opacity]"
         >
           <a
             href="https://github.com/lucasadsr"
@@ -148,10 +148,10 @@ export function Hero() {
       <motion.a
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 0.8 }}
+        transition={{ delay: isMobile ? 0.3 : 0.6 }}
         href="#experience"
         aria-label="Rolar para histórico profissional"
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 p-2.5 rounded-full bg-zinc-900/60 border border-zinc-800 text-emerald-400 hover:text-emerald-300 hover:border-emerald-500/40 hover:bg-zinc-800 transition-all animate-bounce"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 p-2.5 rounded-full bg-zinc-900/60 border border-zinc-800 text-emerald-400 hover:text-emerald-300 hover:border-emerald-500/40 hover:bg-zinc-800 transition-all animate-bounce transform-gpu"
       >
         <ChevronDown size={22} />
       </motion.a>
