@@ -62,7 +62,7 @@ export function Footer() {
                 <li key={link.href}>
                   <a
                     href={link.href}
-                    className="text-zinc-400 hover:text-white text-xs sm:text-sm font-medium transition-colors hover:translate-x-1 inline-block duration-200"
+                    className="text-zinc-400 hover:text-white text-xs sm:text-sm font-medium transition-colors inline-block duration-200"
                   >
                     {link.label}
                   </a>
