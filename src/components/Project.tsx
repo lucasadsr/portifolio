@@ -41,12 +41,13 @@ export function Project({ project }: ProjectProps) {
         href={deploy || repo}
         target="_blank"
         rel="noopener noreferrer"
+        aria-label={`Ver detalhes do projeto ${name}`}
         className="relative overflow-hidden rounded-xl lg:w-1/2 w-full aspect-video bg-zinc-950 border border-zinc-800/60 block group-hover:border-zinc-700/80 transition-colors"
       >
         <Image
           className="object-cover object-top w-full h-full group-hover:scale-105 transition-transform duration-500 ease-out"
           src={image}
-          alt={name}
+          alt={`Demonstração do projeto ${name} desenvolvido por Lucas Ribeiro`}
           width={556}
           height={316}
           quality={90}
