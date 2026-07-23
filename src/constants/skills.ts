@@ -169,4 +169,10 @@ export const SKILLS: Skill[] = [
     title: 'Supabase',
     stack: 'back-end',
   },
+  {
+    id: 29,
+    src: 'sqlite',
+    title: 'SQLite',
+    stack: 'back-end',
+  },
 ]
