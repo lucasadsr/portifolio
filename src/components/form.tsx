@@ -1,8 +1,10 @@
 'use client'
+
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { motion } from 'motion/react'
+import { Send } from 'lucide-react'
 
 const messageSchema = z.object({
   name: z
@@ -26,11 +28,12 @@ export function Form() {
 
   function sendMessage(data: MessageInputs) {
     const { name, message } = data
-
     const fullMessage = `Olá, sou ${name}. \n \n ${message}`
 
     window.open(
-      `https://api.whatsapp.com/send?phone=+5581985660761&text=${fullMessage}`,
+      `https://api.whatsapp.com/send?phone=+5581985660761&text=${encodeURIComponent(
+        fullMessage,
+      )}`,
       '_blank',
     )
   }
@@ -38,64 +41,69 @@ export function Form() {
   return (
     <form
       onSubmit={handleSubmit(sendMessage)}
-      className="mx-auto mt-4 p-8 flex flex-col items-center w-[440px] gap-6 rounded-lg max-sm:w-full max-sm:p-1"
+      className="mx-auto max-w-lg w-full p-8 rounded-2xl bg-zinc-900/60 backdrop-blur-md border border-zinc-800/80 shadow-2xl shadow-black/40 space-y-6"
     >
       <motion.div
-        className=" w-full"
-        initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.3 }}
+        initial={{ opacity: 0, y: 15 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.4 }}
+        className="space-y-2"
       >
-        <label className="flex flex-col gap-2">
-          Nome:{' '}
-          <input
-            type="text"
-            placeholder="Seu nome"
-            required
-            className="bg-transparent p-1 border-b-2 border-zinc-600 outline-none focus:border-green-600 transition-all"
-            {...register('name')}
-          />
-          {errors.name ? (
-            <p className="text-red-600">{errors.name.message}</p>
-          ) : (
-            ''
-          )}
+        <label htmlFor="name" className="block text-sm font-medium text-zinc-300">
+          Seu Nome
         </label>
+        <input
+          id="name"
+          type="text"
+          placeholder="Como posso te chamar?"
+          className="w-full bg-zinc-950/80 border border-zinc-800 text-zinc-100 placeholder:text-zinc-500 rounded-xl px-4 py-3 outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition-all text-sm"
+          {...register('name')}
+        />
+        {errors.name && (
+          <p className="text-rose-400 text-xs font-medium mt-1">
+            {errors.name.message}
+          </p>
+        )}
       </motion.div>
 
       <motion.div
-        className=" w-full"
-        initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.7 }}
+        initial={{ opacity: 0, y: 15 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.4, delay: 0.1 }}
+        className="space-y-2"
       >
-        <label className="flex flex-col gap-2 w-full">
-          Mensagem:{' '}
-          <textarea
-            placeholder="Sua mensagem"
-            rows={6}
-            required
-            {...register('message')}
-            className="bg-transparent p-1 border-b-2 border-zinc-600 outline-none focus:border-green-600 transition-all"
-          />
-          {errors.message ? (
-            <p className="text-red-600">{errors.message.message}</p>
-          ) : (
-            ''
-          )}
+        <label htmlFor="message" className="block text-sm font-medium text-zinc-300">
+          Sua Mensagem
         </label>
+        <textarea
+          id="message"
+          placeholder="Escreva sua mensagem aqui..."
+          rows={5}
+          className="w-full bg-zinc-950/80 border border-zinc-800 text-zinc-100 placeholder:text-zinc-500 rounded-xl px-4 py-3 outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition-all text-sm resize-none"
+          {...register('message')}
+        />
+        {errors.message && (
+          <p className="text-rose-400 text-xs font-medium mt-1">
+            {errors.message.message}
+          </p>
+        )}
       </motion.div>
 
       <motion.div
-        initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 1 }}
+        initial={{ opacity: 0, y: 15 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.4, delay: 0.2 }}
       >
         <button
+          type="submit"
           disabled={isSubmitting}
-          className="font-semibold flex items-center gap-2 bg-green-700 py-2 px-4 rounded-md hover:bg-green-600 transition-all"
+          className="w-full flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-sm transition-all shadow-lg shadow-emerald-600/20 hover:shadow-emerald-500/30 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          Enviar mensagem
+          <Send size={18} />
+          Enviar mensagem no WhatsApp
         </button>
       </motion.div>
     </form>

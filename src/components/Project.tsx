@@ -1,7 +1,7 @@
 'use client'
 
 import { type Project } from '@/types/project'
-import { Globe } from 'lucide-react'
+import { ExternalLink } from 'lucide-react'
 import Image from 'next/image'
 import { type Variants, motion } from 'motion/react'
 import { GithubIcon } from '@/components/icons'
@@ -13,15 +13,14 @@ interface ProjectProps {
 const projectVariants: Variants = {
   offscreen: {
     opacity: 0,
-    y: 20,
+    y: 30,
   },
   onscreen: {
     opacity: 1,
     y: 0,
     transition: {
-      type: 'spring',
-      bounce: 0.4,
-      duration: 1.2,
+      duration: 0.6,
+      ease: [0.21, 0.47, 0.32, 0.98],
     },
   },
 }
@@ -34,53 +33,72 @@ export function Project({ project }: ProjectProps) {
       variants={projectVariants}
       initial="offscreen"
       whileInView="onscreen"
-      className="flex gap-8 max-sm:flex-col max-sm:w-full max-sm:gap-3"
+      viewport={{ once: true, margin: '-50px' }}
+      className="group relative flex flex-col lg:flex-row gap-8 p-6 rounded-2xl bg-zinc-900/60 backdrop-blur-md border border-zinc-800/80 hover:border-emerald-500/40 hover:shadow-2xl hover:shadow-emerald-500/10 transition-all duration-300"
     >
+      {/* Project Image Preview */}
       <a
-        href={repo}
+        href={deploy || repo}
         target="_blank"
-        className="rounded-md min-w-[556px] h-fit hover:shadow-project transition-all"
+        rel="noopener noreferrer"
+        className="relative overflow-hidden rounded-xl lg:w-1/2 w-full aspect-video bg-zinc-950 border border-zinc-800/60 block group-hover:border-zinc-700/80 transition-colors"
       >
         <Image
-          className="rounded-md max-sm:w-[300px]"
+          className="object-cover object-top w-full h-full group-hover:scale-105 transition-transform duration-500 ease-out"
           src={image}
-          alt=""
+          alt={name}
           width={556}
           height={316}
-          quality={100}
+          quality={90}
         />
+        <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
       </a>
-      <div className="flex flex-col gap-4">
-        <p className="text-5xl font-semibold text-white max-sm:text-4xl">
-          {name}
-        </p>
-        <p className="text-zinc-400">{description}</p>
-        <div className="flex gap-4 flex-wrap">
-          {techs.map((tech, i) => {
-            return (
-              <p className="py-1 px-4 bg-blue-500 rounded-md" key={i}>
-                {tech}
-              </p>
-            )
-          })}
+
+      {/* Project Info */}
+      <div className="flex flex-col justify-between lg:w-1/2 gap-6">
+        <div className="space-y-3">
+          <h3 className="text-2xl sm:text-3xl font-bold text-white tracking-tight group-hover:text-emerald-400 transition-colors">
+            {name}
+          </h3>
+          <p className="text-zinc-300 text-sm sm:text-base leading-relaxed">
+            {description}
+          </p>
         </div>
-        <div className="flex gap-4 mt-1">
-          <a
-            className="flex items-center gap-2 bg-green-700 py-2 px-4 rounded-md hover:bg-green-600 transition-all"
-            href={repo}
-            target="_blank"
-          >
-            <GithubIcon /> Repositório
-          </a>
-          {deploy && (
+
+        {/* Tech Badges */}
+        <div className="space-y-6">
+          <div className="flex gap-2 flex-wrap">
+            {techs.map((tech, i) => (
+              <span
+                key={i}
+                className="px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-medium shadow-sm shadow-emerald-500/5"
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
+
+          {/* Action Links */}
+          <div className="flex gap-3 items-center">
             <a
-              className="flex items-center gap-2 bg-green-700 py-2 px-4 rounded-md hover:bg-green-600 transition-all"
-              href={deploy}
+              className="flex items-center gap-2 px-4 py-2 rounded-xl bg-zinc-800/90 text-zinc-200 hover:text-white hover:bg-zinc-700 text-sm font-medium transition-all shadow-md active:scale-95"
+              href={repo}
               target="_blank"
+              rel="noopener noreferrer"
             >
-              <Globe /> Deploy
+              <GithubIcon /> Repositório
             </a>
-          )}
+            {deploy && (
+              <a
+                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-emerald-600 text-white hover:bg-emerald-500 text-sm font-medium transition-all shadow-md shadow-emerald-600/20 active:scale-95"
+                href={deploy}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <ExternalLink size={16} /> Deploy
+              </a>
+            )}
+          </div>
         </div>
       </div>
     </motion.div>
