@@ -27,6 +27,8 @@ export interface CardSwapProps {
   verticalDistance?: number;
   delay?: number;
   pauseOnHover?: boolean;
+  straightenOnHover?: boolean;
+  paused?: boolean;
   onCardClick?: (idx: number) => void;
   skewAmount?: number;
   easing?: 'linear' | 'elastic';
@@ -77,6 +79,8 @@ const CardSwap = forwardRef<CardSwapRef, CardSwapProps>(({
   verticalDistance = 70,
   delay = 5000,
   pauseOnHover = false,
+  straightenOnHover = true,
+  paused = false,
   onCardClick,
   skewAmount = 6,
   easing = 'elastic',
@@ -105,7 +109,13 @@ const CardSwap = forwardRef<CardSwapRef, CardSwapProps>(({
   );
 
   const childArr = useMemo(() => Children.toArray(children) as ReactElement<CardProps>[], [children]);
-  const refs = useMemo<CardRef[]>(() => childArr.map(() => React.createRef<HTMLDivElement>()), [childArr]);
+
+  // Keep stable ref array across re-renders to prevent resetting card positions
+  const refsRef = useRef<CardRef[]>([]);
+  if (refsRef.current.length !== childArr.length) {
+    refsRef.current = Array.from({ length: childArr.length }, (_, i) => refsRef.current[i] || React.createRef<HTMLDivElement>());
+  }
+  const refs = refsRef.current;
 
   const order = useRef<number[]>(Array.from({ length: childArr.length }, (_, i) => i));
 
@@ -113,11 +123,14 @@ const CardSwap = forwardRef<CardSwapRef, CardSwapProps>(({
   const intervalRef = useRef<number>(0);
   const container = useRef<HTMLDivElement>(null);
   const isAnimating = useRef(false);
+  const isHovered = useRef(false);
+  const isPlacedRef = useRef(false);
 
   const swapNext = useCallback(() => {
-    if (isAnimating.current || order.current.length < 2) return;
+    if (isAnimating.current || order.current.length < 2 || paused) return;
     isAnimating.current = true;
 
+    const targetSkew = isHovered.current && straightenOnHover ? 0 : skewAmount;
     const [front, ...rest] = order.current;
     const elFront = refs[front]?.current;
     if (!elFront) {
@@ -151,6 +164,7 @@ const CardSwap = forwardRef<CardSwapRef, CardSwapProps>(({
           x: slot.x,
           y: slot.y,
           z: slot.z,
+          skewY: targetSkew,
           duration: config.durMove,
           ease: config.ease
         },
@@ -173,17 +187,19 @@ const CardSwap = forwardRef<CardSwapRef, CardSwapProps>(({
         x: backSlot.x,
         y: backSlot.y,
         z: backSlot.z,
+        skewY: targetSkew,
         duration: config.durReturn,
         ease: config.ease
       },
       'return'
     );
-  }, [cardDistance, config, refs, verticalDistance]);
+  }, [cardDistance, config, refs, verticalDistance, skewAmount, straightenOnHover, paused]);
 
   const swapPrev = useCallback(() => {
-    if (isAnimating.current || order.current.length < 2) return;
+    if (isAnimating.current || order.current.length < 2 || paused) return;
     isAnimating.current = true;
 
+    const targetSkew = isHovered.current && straightenOnHover ? 0 : skewAmount;
     const back = order.current[order.current.length - 1];
     const rest = order.current.slice(0, -1);
     const elBack = refs[back]?.current;
@@ -218,6 +234,7 @@ const CardSwap = forwardRef<CardSwapRef, CardSwapProps>(({
           x: slot.x,
           y: slot.y,
           z: slot.z,
+          skewY: targetSkew,
           duration: config.durMove,
           ease: config.ease
         },
@@ -240,21 +257,24 @@ const CardSwap = forwardRef<CardSwapRef, CardSwapProps>(({
         x: frontSlot.x,
         y: frontSlot.y,
         z: frontSlot.z,
+        skewY: targetSkew,
         duration: config.durReturn,
         ease: config.ease
       },
       'return'
     );
-  }, [cardDistance, config, refs, verticalDistance]);
+  }, [cardDistance, config, refs, verticalDistance, skewAmount, straightenOnHover, paused]);
 
   const resetTimer = useCallback(() => {
     if (intervalRef.current) {
       clearInterval(intervalRef.current);
     }
-    intervalRef.current = window.setInterval(() => {
-      swapNext();
-    }, delay);
-  }, [delay, swapNext]);
+    if (!paused) {
+      intervalRef.current = window.setInterval(() => {
+        swapNext();
+      }, delay);
+    }
+  }, [delay, swapNext, paused]);
 
   useImperativeHandle(ref, () => ({
     swapNext: () => {
@@ -267,40 +287,76 @@ const CardSwap = forwardRef<CardSwapRef, CardSwapProps>(({
     }
   }));
 
+  // Initial placement on mount
   useEffect(() => {
-    const total = refs.length;
-    refs.forEach((r, i) => {
-      if (r.current) {
-        placeNow(r.current, makeSlot(i, cardDistance, verticalDistance, total), skewAmount);
-      }
-    });
+    if (!isPlacedRef.current) {
+      const total = refs.length;
+      refs.forEach((r, i) => {
+        if (r.current) {
+          placeNow(r.current, makeSlot(i, cardDistance, verticalDistance, total), skewAmount);
+        }
+      });
+      isPlacedRef.current = true;
+    }
+  }, [cardDistance, verticalDistance, skewAmount, refs]);
+
+  // Interval & hover handling
+  useEffect(() => {
+    if (paused) {
+      tlRef.current?.pause();
+      if (intervalRef.current) clearInterval(intervalRef.current);
+      return;
+    }
 
     intervalRef.current = window.setInterval(swapNext, delay);
 
-    if (pauseOnHover) {
-      const node = container.current!;
-      const pause = () => {
+    const node = container.current;
+    if (!node) return;
+
+    const handleMouseEnter = () => {
+      isHovered.current = true;
+      if (pauseOnHover || paused) {
         tlRef.current?.pause();
         clearInterval(intervalRef.current);
-      };
-      const resume = () => {
+      }
+      if (straightenOnHover) {
+        const cardElements = refs.map(r => r.current).filter(Boolean) as HTMLElement[];
+        gsap.to(cardElements, {
+          skewY: 0,
+          duration: 0.4,
+          ease: 'power2.out',
+          overwrite: 'auto'
+        });
+      }
+    };
+
+    const handleMouseLeave = () => {
+      isHovered.current = false;
+      if (straightenOnHover) {
+        const cardElements = refs.map(r => r.current).filter(Boolean) as HTMLElement[];
+        gsap.to(cardElements, {
+          skewY: skewAmount,
+          duration: 0.4,
+          ease: 'power2.out',
+          overwrite: 'auto'
+        });
+      }
+      if (pauseOnHover && !paused) {
         tlRef.current?.play();
         intervalRef.current = window.setInterval(swapNext, delay);
-      };
-      node.addEventListener('mouseenter', pause);
-      node.addEventListener('mouseleave', resume);
-      return () => {
-        node.removeEventListener('mouseenter', pause);
-        node.removeEventListener('mouseleave', resume);
-        clearInterval(intervalRef.current);
-        tlRef.current?.kill();
-      };
-    }
+      }
+    };
+
+    node.addEventListener('mouseenter', handleMouseEnter);
+    node.addEventListener('mouseleave', handleMouseLeave);
+
     return () => {
+      node.removeEventListener('mouseenter', handleMouseEnter);
+      node.removeEventListener('mouseleave', handleMouseLeave);
       clearInterval(intervalRef.current);
       tlRef.current?.kill();
     };
-  }, [cardDistance, verticalDistance, delay, pauseOnHover, skewAmount, refs, swapNext]);
+  }, [cardDistance, verticalDistance, delay, pauseOnHover, straightenOnHover, skewAmount, refs, swapNext, paused]);
 
   const rendered = childArr.map((child, i) =>
     isValidElement<CardProps>(child)

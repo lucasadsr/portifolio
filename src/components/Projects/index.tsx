@@ -11,7 +11,20 @@ import { GithubIcon } from '@/components/icons'
 
 export function Projects() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
+  const [mobileIndex, setMobileIndex] = useState(0)
   const cardSwapRef = useRef<CardSwapRef>(null)
+
+  const currentMobileProject = PROJECTS[mobileIndex]
+
+  const nextProject = () => {
+    cardSwapRef.current?.swapNext()
+    setMobileIndex((prev) => (prev + 1) % PROJECTS.length)
+  }
+
+  const prevProject = () => {
+    cardSwapRef.current?.swapPrev()
+    setMobileIndex((prev) => (prev - 1 + PROJECTS.length) % PROJECTS.length)
+  }
 
   // Handle ESC keyboard navigation to close modal
   useEffect(() => {
@@ -54,7 +67,7 @@ export function Projects() {
           {/* Previous / Next Deck Buttons */}
           <div className="flex items-center gap-1.5 p-1 rounded-xl bg-zinc-900/90 border border-zinc-800 shadow-md">
             <button
-              onClick={() => cardSwapRef.current?.swapPrev()}
+              onClick={prevProject}
               className="p-2 rounded-lg bg-zinc-800/80 text-zinc-300 hover:text-white hover:bg-zinc-700 transition-all active:scale-95"
               title="Projeto Anterior"
               aria-label="Projeto Anterior"
@@ -62,7 +75,7 @@ export function Projects() {
               <ChevronLeft size={18} />
             </button>
             <button
-              onClick={() => cardSwapRef.current?.swapNext()}
+              onClick={nextProject}
               className="p-2 rounded-lg bg-zinc-800/80 text-zinc-300 hover:text-white hover:bg-zinc-700 transition-all active:scale-95"
               title="Próximo Projeto"
               aria-label="Próximo Projeto"
@@ -76,13 +89,14 @@ export function Projects() {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
             </span>
-            <span className="hidden sm:inline">Passe o mouse para pausar</span>
+            <span className="hidden sm:inline">Passe o mouse para alinhar e pausar</span>
+            <span className="sm:hidden">Toque no card para ver</span>
           </div>
         </div>
       </div>
 
-      {/* 3D CardSwap Section */}
-      <div className="relative py-8 flex justify-center items-center min-h-[500px] sm:min-h-[560px]">
+      {/* Desktop 3D CardSwap Section */}
+      <div className="hidden md:flex relative py-8 justify-center items-center min-h-[500px] sm:min-h-[560px]">
         <CardSwap
           ref={cardSwapRef}
           width={680}
@@ -91,6 +105,8 @@ export function Projects() {
           verticalDistance={25}
           delay={4500}
           pauseOnHover={true}
+          straightenOnHover={true}
+          paused={Boolean(selectedProject)}
           skewAmount={4}
         >
           {PROJECTS.map((project, index) => (
@@ -177,6 +193,130 @@ export function Projects() {
             </Card>
           ))}
         </CardSwap>
+      </div>
+
+      {/* Touch-Optimized Mobile Showcase (< md) */}
+      <div className="md:hidden space-y-4">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentMobileProject.id}
+            initial={{ opacity: 0, x: 15 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -15 }}
+            transition={{ duration: 0.2 }}
+            className="group cursor-pointer flex flex-col justify-between overflow-hidden bg-zinc-950/95 backdrop-blur-2xl border border-zinc-800/80 p-5 rounded-2xl shadow-xl hover:border-emerald-500/50"
+            onClick={() => setSelectedProject(currentMobileProject)}
+          >
+            {/* Mobile Card Image Preview */}
+            <div className="relative w-full h-48 sm:h-56 overflow-hidden rounded-xl bg-zinc-900 border border-zinc-800/60 flex-shrink-0">
+              <Image
+                src={currentMobileProject.image}
+                alt={currentMobileProject.name}
+                fill
+                sizes="100vw"
+                className="object-cover object-top"
+                unoptimized={currentMobileProject.image.startsWith('http')}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/20 to-transparent opacity-80" />
+
+              {/* Counter Badge */}
+              <span className="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-zinc-950/80 backdrop-blur-md border border-zinc-800 text-xs text-emerald-400 font-mono font-medium shadow-md">
+                0{mobileIndex + 1} / 0{PROJECTS.length}
+              </span>
+
+              {/* Expand Hint Overlay */}
+              <div className="absolute top-3 left-3 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-zinc-950/80 backdrop-blur-md border border-zinc-800/80 text-xs text-zinc-300 font-medium">
+                <Maximize2 size={12} className="text-emerald-400" />
+                Ver detalhes
+              </div>
+            </div>
+
+            {/* Project Details */}
+            <div className="flex flex-col justify-between flex-grow mt-4 space-y-4">
+              <div className="space-y-1.5">
+                <h3 className="text-xl font-bold text-white tracking-tight group-hover:text-emerald-400 transition-colors">
+                  {currentMobileProject.name}
+                </h3>
+                <p className="text-zinc-400 text-xs sm:text-sm leading-relaxed line-clamp-3">
+                  {currentMobileProject.description}
+                </p>
+              </div>
+
+              <div className="space-y-3 pt-1">
+                {/* Tech Stack Badges */}
+                <div className="flex flex-wrap gap-1.5">
+                  {currentMobileProject.techs.map((tech, i) => (
+                    <span
+                      key={i}
+                      className="px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-medium"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Action Buttons */}
+                <div className="flex items-center gap-3 pt-1">
+                  {currentMobileProject.repo && (
+                    <a
+                      href={currentMobileProject.repo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 flex items-center justify-center gap-2 px-3.5 py-2.5 rounded-xl bg-zinc-800/90 text-zinc-200 hover:text-white text-xs font-medium transition-all shadow-md active:scale-95 border border-zinc-700/60"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <GithubIcon /> Repositório
+                    </a>
+                  )}
+                  {currentMobileProject.deploy && (
+                    <a
+                      href={currentMobileProject.deploy}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 flex items-center justify-center gap-2 px-3.5 py-2.5 rounded-xl bg-emerald-600 text-white hover:bg-emerald-500 text-xs font-medium transition-all shadow-md shadow-emerald-600/20 active:scale-95"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <ExternalLink size={14} /> Deploy
+                    </a>
+                  )}
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Mobile Pagination & Quick Jump Dots */}
+        <div className="flex items-center justify-between px-2 pt-1">
+          <div className="flex items-center gap-1.5">
+            {PROJECTS.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setMobileIndex(i)}
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  mobileIndex === i ? 'w-6 bg-emerald-400 shadow-sm shadow-emerald-500/50' : 'w-2 bg-zinc-800 hover:bg-zinc-700'
+                }`}
+                aria-label={`Ir para projeto ${i + 1}`}
+              />
+            ))}
+          </div>
+
+          <div className="flex items-center gap-2">
+            <button
+              onClick={prevProject}
+              className="p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-300 hover:text-white active:scale-95 transition-all"
+              aria-label="Projeto Anterior"
+            >
+              <ChevronLeft size={18} />
+            </button>
+            <button
+              onClick={nextProject}
+              className="p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-300 hover:text-white active:scale-95 transition-all"
+              aria-label="Próximo Projeto"
+            >
+              <ChevronRight size={18} />
+            </button>
+          </div>
+        </div>
       </div>
 
       {/* GitHub Call to Action */}
