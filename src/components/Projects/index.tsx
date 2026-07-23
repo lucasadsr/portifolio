@@ -4,11 +4,17 @@ import React, { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
 import { ChevronLeft, ChevronRight, ExternalLink, Sparkles, X, Maximize2 } from 'lucide-react'
 import { motion, AnimatePresence } from 'motion/react'
+import dynamic from 'next/dynamic'
 import { PROJECTS } from '@/constants/projects'
 import type { Project } from '@/types/project'
-import { CardSwap, Card, type CardSwapRef } from '@/components/CardSwap/CardSwap'
+import { Card, type CardSwapRef } from '@/components/CardSwap/CardSwap'
 import { GithubIcon } from '@/components/icons'
 import { useIsMobile } from '@/hooks/useIsMobile'
+
+const CardSwap = dynamic(
+  () => import('@/components/CardSwap/CardSwap').then((mod) => mod.CardSwap),
+  { ssr: false },
+)
 
 export function Projects() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)

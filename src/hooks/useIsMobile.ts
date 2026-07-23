@@ -7,7 +7,7 @@ export function useIsMobile(breakpoint = 768) {
     if (typeof window !== 'undefined') {
       return window.innerWidth < breakpoint
     }
-    return false
+    return true
   })
 
   useEffect(() => {
@@ -31,3 +31,4 @@ export function useIsMobile(breakpoint = 768) {
 
   return isMobile
 }
+
