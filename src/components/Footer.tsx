@@ -25,6 +25,7 @@ export function Footer() {
   const navLinks = [
     { label: t.nav.hero, href: '#hero' },
     { label: t.nav.experience, href: '#experience' },
+    { label: t.nav.stats, href: '#github-stats' },
     { label: t.nav.projects, href: '#projects' },
     { label: t.nav.skills, href: '#skills' },
     { label: t.nav.contact, href: '#contact' },

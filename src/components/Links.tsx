@@ -9,6 +9,7 @@ import {
   FolderKanban,
   Code2,
   Mail,
+  Activity,
   ChevronRight,
 } from 'lucide-react'
 import { useEffect, useState } from 'react'
@@ -23,6 +24,7 @@ export function Links() {
   const navItems = [
     { label: t.nav.hero, href: '#hero', id: 'hero', icon: Home },
     { label: t.nav.experience, href: '#experience', id: 'experience', icon: Briefcase },
+    { label: t.nav.stats, href: '#github-stats', id: 'github-stats', icon: Activity },
     { label: t.nav.projects, href: '#projects', id: 'projects', icon: FolderKanban },
     { label: t.nav.skills, href: '#skills', id: 'skills', icon: Code2 },
     { label: t.nav.contact, href: '#contact', id: 'contact', icon: Mail },
@@ -62,7 +64,7 @@ export function Links() {
               <a
                 href={item.href}
                 onClick={() => setActiveSection(item.href)}
-                className={`relative z-10 block px-4 py-1.5 text-sm font-medium transition-colors ${
+                className={`relative z-10 block px-3.5 py-1.5 text-sm font-medium transition-colors ${
                   isActive
                     ? 'text-emerald-400 font-semibold'
                     : 'text-zinc-400 hover:text-zinc-100'

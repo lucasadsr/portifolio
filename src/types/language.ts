@@ -4,6 +4,7 @@ export interface Dictionary {
   nav: {
     hero: string
     experience: string
+    stats: string
     projects: string
     skills: string
     contact: string
@@ -53,10 +54,16 @@ export interface Dictionary {
     publicReposSub: string
     totalStars: string
     totalStarsSub: string
-    followers: string
-    followersSub: string
+    topLanguage: string
+    topLanguageSub: string
+    yearsActive: string
+    yearsActiveSub: string
+    totalPRs: string
+    totalPRsSub: string
     pittayaStars: string
     pittayaStarsSub: string
+    contributionTitle: string
+    contributionSub: string
     visitProfile: string
   }
   projects: {
