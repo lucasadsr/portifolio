@@ -58,12 +58,16 @@ export interface Dictionary {
     topLanguageSub: string
     yearsActive: string
     yearsActiveSub: string
+    yearsText: string
     totalPRs: string
     totalPRsSub: string
     pittayaStars: string
     pittayaStarsSub: string
     contributionTitle: string
     contributionSub: string
+    contributionTotalCount: string
+    contributionSingle: string
+    contributionPlural: string
     visitProfile: string
   }
   projects: {

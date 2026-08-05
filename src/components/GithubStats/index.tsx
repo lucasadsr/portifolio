@@ -2,13 +2,14 @@
 
 import { useEffect, useState } from 'react'
 import { motion } from 'motion/react'
-import { FolderGit2, Star, Code2, Calendar as CalendarIcon, GitPullRequest, Terminal, ExternalLink, Activity } from 'lucide-react'
+import { Calendar as CalendarIcon, ExternalLink, Activity } from 'lucide-react'
 import { GitHubCalendar } from 'react-github-calendar'
 import * as Tooltip from '@radix-ui/react-tooltip'
 import { useLanguage } from '@/providers/LanguageContext'
 import type { GitHubStats as GitHubStatsType } from '@/types/github'
 import { GithubIcon } from '@/components/icons'
 import { formatDate } from '@/utils/formatDate'
+import { getStatCards } from '@/constants/githubStats'
 
 export function GithubStats() {
   const { t, language } = useLanguage()
@@ -33,68 +34,7 @@ export function GithubStats() {
     fetchStats()
   }, [])
 
-  const statCards = [
-    {
-      id: 'public-repos',
-      icon: FolderGit2,
-      value: stats ? stats.publicRepos : 0,
-      label: t.githubStats.publicRepos,
-      sublabel: t.githubStats.publicReposSub,
-      color: 'from-emerald-500/20 to-teal-500/5',
-      borderColor: 'group-hover:border-emerald-500/40',
-      iconColor: 'text-emerald-400',
-    },
-    {
-      id: 'total-stars',
-      icon: Star,
-      value: stats ? stats.totalStars : 0,
-      label: t.githubStats.totalStars,
-      sublabel: t.githubStats.totalStarsSub,
-      color: 'from-amber-500/20 to-yellow-500/5',
-      borderColor: 'group-hover:border-amber-500/40',
-      iconColor: 'text-amber-400',
-    },
-    {
-      id: 'pittaya-stars',
-      icon: Code2,
-      value: stats ? stats.pittayaStars : 0,
-      label: t.githubStats.pittayaStars,
-      sublabel: t.githubStats.pittayaStarsSub,
-      color: 'from-purple-500/20 to-pink-500/5',
-      borderColor: 'group-hover:border-purple-500/40',
-      iconColor: 'text-purple-400',
-    },
-    {
-      id: 'top-language',
-      icon: Terminal,
-      value: stats?.topLanguage || 'TypeScript',
-      label: t.githubStats.topLanguage,
-      sublabel: t.githubStats.topLanguageSub,
-      color: 'from-blue-500/20 to-cyan-500/5',
-      borderColor: 'group-hover:border-blue-500/40',
-      iconColor: 'text-blue-400',
-    },
-    {
-      id: 'years-active',
-      icon: CalendarIcon,
-      value: stats ? `${stats.yearsActive}+ ${language === 'en' ? 'Years' : 'Anos'}` : `0 ${language === 'en' ? 'Years' : 'Anos'}`,
-      label: t.githubStats.yearsActive,
-      sublabel: t.githubStats.yearsActiveSub,
-      color: 'from-teal-500/20 to-emerald-500/5',
-      borderColor: 'group-hover:border-teal-500/40',
-      iconColor: 'text-teal-400',
-    },
-    {
-      id: 'total-prs',
-      icon: GitPullRequest,
-      value: stats ? `${stats.totalPRs}` : '0',
-      label: t.githubStats.totalPRs,
-      sublabel: t.githubStats.totalPRsSub,
-      color: 'from-indigo-500/20 to-violet-500/5',
-      borderColor: 'group-hover:border-indigo-500/40',
-      iconColor: 'text-indigo-400',
-    },
-  ]
+  const statCards = getStatCards(stats, t)
 
   const customTheme = {
     light: ['#18181b', '#064e3b', '#047857', '#10b981', '#34d399'],
@@ -224,10 +164,7 @@ export function GithubStats() {
                 fontSize={12}
                 theme={customTheme}
                 labels={{
-                  totalCount:
-                    language === 'en'
-                      ? '{{count}} contributions in the last year'
-                      : '{{count}} contribuições no último ano',
+                  totalCount: t.githubStats.contributionTotalCount,
                 }}
                 renderBlock={(block, activity) => (
                   <Tooltip.Root key={activity.date}>
@@ -242,9 +179,9 @@ export function GithubStats() {
                           {activity.count}
                         </span>
                         <span>
-                          {language === 'en'
-                            ? `contribution${activity.count === 1 ? '' : 's'} on`
-                            : `contribuição${activity.count === 1 ? '' : 'ões'} em`}{' '}
+                          {activity.count === 1
+                            ? t.githubStats.contributionSingle
+                            : t.githubStats.contributionPlural}{' '}
                           {formatDate(activity.date, language)}
                         </span>
                       </Tooltip.Content>
