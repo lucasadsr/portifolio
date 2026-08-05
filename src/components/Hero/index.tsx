@@ -6,6 +6,7 @@ import { motion } from 'motion/react'
 import dynamic from 'next/dynamic'
 
 import { useIsMobile } from '@/hooks/useIsMobile'
+import { useLanguage } from '@/providers/LanguageContext'
 
 const FaultyTerminal = dynamic(
   () => import('@/components/FaultyTerminal/FaultyTerminal'),
@@ -14,6 +15,7 @@ const FaultyTerminal = dynamic(
 
 export function Hero() {
   const isMobile = useIsMobile(768)
+  const { t } = useLanguage()
 
   return (
     <section
@@ -65,7 +67,7 @@ export function Hero() {
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
           </span>
-          Aberto a conexões & networking
+          {t.hero.statusBadge}
         </motion.div>
 
         {/* Headlines */}
@@ -75,9 +77,9 @@ export function Hero() {
           transition={{ duration: 0.4, delay: isMobile ? 0.05 : 0.1, ease: 'easeOut' }}
           className="space-y-2 transform-gpu [will-change:transform,opacity]"
         >
-          <p className="text-zinc-400 text-lg font-medium">Olá, eu sou</p>
+          <p className="text-zinc-400 text-lg font-medium">{t.hero.greeting}</p>
           <h1 className="text-5xl sm:text-7xl font-extrabold tracking-tight text-white">
-            Lucas Ribeiro
+            {t.hero.name}
           </h1>
         </motion.div>
 
@@ -87,7 +89,7 @@ export function Hero() {
           transition={{ duration: 0.4, delay: isMobile ? 0.1 : 0.2, ease: 'easeOut' }}
           className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 bg-clip-text text-transparent transform-gpu [will-change:transform,opacity]"
         >
-          Engenheiro de Software
+          {t.hero.role}
         </motion.h2>
 
         {/* Bio */}
@@ -98,16 +100,18 @@ export function Hero() {
           className="text-zinc-300 leading-relaxed text-base sm:text-lg max-w-2xl space-y-2.5 transform-gpu [will-change:transform,opacity]"
         >
           <p>
-            Engenheiro de Software focado na criação de aplicações{' '}
-            <span className="text-emerald-400 font-semibold">web e mobile</span>{' '}
-            modernas com{' '}
-            <span className="text-emerald-400 font-semibold">Next.js</span>,{' '}
-            <span className="text-emerald-400 font-semibold">React</span>,{' '}
-            <span className="text-emerald-400 font-semibold">React Native</span> e{' '}
-            <span className="text-emerald-400 font-semibold">TypeScript</span>.
+            {t.hero.bioLine1Part1}
+            <span className="text-emerald-400 font-semibold">{t.hero.bioLine1Highlight1}</span>
+            {t.hero.bioLine1Part2}
+            <span className="text-emerald-400 font-semibold">{t.hero.bioLine1Highlight2}</span>
+            {t.hero.bioLine1Part3}
+            <span className="text-emerald-400 font-semibold">{t.hero.bioLine1Highlight3}</span>
+            {t.hero.bioLine1Part4}
+            <span className="text-emerald-400 font-semibold">{t.hero.bioLine1Highlight4}</span>
+            {t.hero.bioLine1Part5}
           </p>
           <p className="text-zinc-400 text-sm sm:text-base">
-            Atualmente atuando no setor fintech/precatórios com foco em interfaces fluidas, gerenciamento de estado assíncrono e arquitetura escalável.
+            {t.hero.bioLine2}
           </p>
         </motion.div>
 
@@ -124,7 +128,7 @@ export function Hero() {
             rel="noopener noreferrer"
             className="flex items-center gap-2.5 px-5 py-2.5 rounded-xl bg-zinc-900/80 border border-zinc-800 text-zinc-200 hover:text-white hover:border-emerald-500/40 hover:bg-zinc-800/80 hover:-translate-y-0.5 transition-all shadow-lg shadow-black/40 hover:shadow-emerald-500/10 font-medium text-sm"
           >
-            <GithubIcon size={20} /> GitHub
+            <GithubIcon size={20} /> {t.hero.github}
           </a>
           <a
             href="https://www.linkedin.com/in/lucasadsr/"
@@ -132,14 +136,14 @@ export function Hero() {
             rel="noopener noreferrer"
             className="flex items-center gap-2.5 px-5 py-2.5 rounded-xl bg-zinc-900/80 border border-zinc-800 text-zinc-200 hover:text-white hover:border-emerald-500/40 hover:bg-zinc-800/80 hover:-translate-y-0.5 transition-all shadow-lg shadow-black/40 hover:shadow-emerald-500/10 font-medium text-sm"
           >
-            <LinkedinIcon size={20} /> LinkedIn
+            <LinkedinIcon size={20} /> {t.hero.linkedin}
           </a>
           <a
             href="mailto:lucasaraujodsr@gmail.com"
             rel="noopener noreferrer"
             className="flex items-center gap-2.5 px-5 py-2.5 rounded-xl bg-zinc-900/80 border border-zinc-800 text-zinc-200 hover:text-white hover:border-emerald-500/40 hover:bg-zinc-800/80 hover:-translate-y-0.5 transition-all shadow-lg shadow-black/40 hover:shadow-emerald-500/10 font-medium text-sm"
           >
-            <Mail size={20} /> E-mail
+            <Mail size={20} /> {t.hero.email}
           </a>
         </motion.div>
       </div>
@@ -150,7 +154,7 @@ export function Hero() {
         animate={{ opacity: 1 }}
         transition={{ delay: isMobile ? 0.3 : 0.6 }}
         href="#experience"
-        aria-label="Rolar para histórico profissional"
+        aria-label={t.hero.ariaScroll}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 p-2.5 rounded-full bg-zinc-900/60 border border-zinc-800 text-emerald-400 hover:text-emerald-300 hover:border-emerald-500/40 hover:bg-zinc-800 transition-all animate-bounce transform-gpu"
       >
         <ChevronDown size={22} />

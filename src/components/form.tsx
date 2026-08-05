@@ -5,19 +5,28 @@ import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { motion } from 'motion/react'
 import { Send } from 'lucide-react'
-
-const messageSchema = z.object({
-  name: z
-    .string()
-    .min(3, { message: 'Seu nome deve conter pelo menos 3 caracteres.' }),
-  message: z
-    .string()
-    .min(10, { message: 'Sua mensagem deve conter pelo menos 10 caracteres.' }),
-})
-
-type MessageInputs = z.infer<typeof messageSchema>
+import { useLanguage } from '@/providers/LanguageContext'
 
 export function Form() {
+  const { t, language } = useLanguage()
+
+  const messageSchema = z.object({
+    name: z.string().min(3, {
+      message:
+        language === 'en'
+          ? 'Your name must contain at least 3 characters.'
+          : 'Seu nome deve conter pelo menos 3 caracteres.',
+    }),
+    message: z.string().min(10, {
+      message:
+        language === 'en'
+          ? 'Your message must contain at least 10 characters.'
+          : 'Sua mensagem deve conter pelo menos 10 caracteres.',
+    }),
+  })
+
+  type MessageInputs = z.infer<typeof messageSchema>
+
   const {
     register,
     handleSubmit,
@@ -28,7 +37,10 @@ export function Form() {
 
   function sendMessage(data: MessageInputs) {
     const { name, message } = data
-    const fullMessage = `Olá, sou ${name}. \n \n ${message}`
+    const fullMessage =
+      language === 'en'
+        ? `Hello, I'm ${name}. \n \n ${message}`
+        : `Olá, sou ${name}. \n \n ${message}`
 
     window.open(
       `https://api.whatsapp.com/send?phone=+5581985660761&text=${encodeURIComponent(
@@ -51,12 +63,12 @@ export function Form() {
         className="space-y-2"
       >
         <label htmlFor="name" className="block text-sm font-medium text-zinc-300">
-          Seu Nome
+          {t.contact.form.nameLabel}
         </label>
         <input
           id="name"
           type="text"
-          placeholder="Como posso te chamar?"
+          placeholder={t.contact.form.namePlaceholder}
           className="w-full bg-zinc-950/80 border border-zinc-800 text-zinc-100 placeholder:text-zinc-500 rounded-xl px-4 py-3 outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition-all text-sm"
           {...register('name')}
         />
@@ -75,11 +87,11 @@ export function Form() {
         className="space-y-2"
       >
         <label htmlFor="message" className="block text-sm font-medium text-zinc-300">
-          Sua Mensagem
+          {t.contact.form.messageLabel}
         </label>
         <textarea
           id="message"
-          placeholder="Escreva sua mensagem aqui..."
+          placeholder={t.contact.form.messagePlaceholder}
           rows={5}
           className="w-full bg-zinc-950/80 border border-zinc-800 text-zinc-100 placeholder:text-zinc-500 rounded-xl px-4 py-3 outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition-all text-sm resize-none"
           {...register('message')}
@@ -103,7 +115,7 @@ export function Form() {
           className="w-full flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-sm transition-all shadow-lg shadow-emerald-600/20 hover:shadow-emerald-500/30 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
         >
           <Send size={18} />
-          Enviar mensagem no WhatsApp
+          {isSubmitting ? t.contact.form.submittingButton : t.contact.form.submitButton}
         </button>
       </motion.div>
     </form>

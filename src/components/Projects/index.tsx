@@ -4,11 +4,11 @@ import React, { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
 import { ChevronLeft, ChevronRight, ExternalLink, Sparkles, X, Maximize2 } from 'lucide-react'
 import { motion, AnimatePresence } from 'motion/react'
-import { PROJECTS } from '@/constants/projects'
 import type { Project } from '@/types/project'
 import { GithubIcon } from '@/components/icons'
 import { CardStack, type CardStackRef, type CardStackItem } from '@/components/CardStack'
 import { useIsMobile } from '@/hooks/useIsMobile'
+import { useLanguage } from '@/providers/LanguageContext'
 
 type ProjectCardItem = Project & CardStackItem
 
@@ -16,8 +16,9 @@ export function Projects() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
   const cardStackRef = useRef<CardStackRef>(null)
   const isMobile = useIsMobile(768)
+  const { t } = useLanguage()
 
-  const cardItems: ProjectCardItem[] = PROJECTS.map((project) => ({
+  const cardItems: ProjectCardItem[] = t.projects.items.map((project) => ({
     ...project,
     title: project.name,
     imageSrc: project.image,
@@ -60,13 +61,13 @@ export function Projects() {
         <div className="space-y-2">
           <span className="text-emerald-400 text-sm font-semibold tracking-wider uppercase flex items-center gap-2">
             <Sparkles className="w-4 h-4" />
-            Portfólio
+            {t.projects.sectionBadge}
           </span>
           <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white">
-            Projetos em Destaque
+            {t.projects.sectionTitle}
           </h2>
           <p className="text-zinc-400 text-base max-w-xl">
-            Conheça algumas das aplicações web e APIs que desenvolvi recentemente.
+            {t.projects.sectionDescription}
           </p>
         </div>
 
@@ -77,16 +78,16 @@ export function Projects() {
             <button
               onClick={prevProject}
               className="p-2.5 rounded-lg bg-zinc-800/80 text-zinc-300 hover:text-white hover:bg-zinc-700 transition-all active:scale-95 cursor-pointer"
-              title="Projeto Anterior"
-              aria-label="Projeto Anterior"
+              title="Anterior"
+              aria-label="Anterior"
             >
               <ChevronLeft size={20} />
             </button>
             <button
               onClick={nextProject}
               className="p-2.5 rounded-lg bg-zinc-800/80 text-zinc-300 hover:text-white hover:bg-zinc-700 transition-all active:scale-95 cursor-pointer"
-              title="Próximo Projeto"
-              aria-label="Próximo Projeto"
+              title="Próximo"
+              aria-label="Próximo"
             >
               <ChevronRight size={20} />
             </button>
@@ -97,7 +98,7 @@ export function Projects() {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
             </span>
-            <span>Arraste ou use as setas para navegar</span>
+            <span>{t.projects.deckHint}</span>
           </div>
         </div>
       </div>
@@ -118,8 +119,7 @@ export function Projects() {
           springStiffness={380}
           springDamping={32}
           showDots={true}
-
-          renderCard={(project, { active, index }) => (
+          renderCard={(project) => (
             <div
               className="group relative flex flex-col justify-between h-full p-5 sm:p-5 bg-zinc-950/95 backdrop-blur-xl border border-zinc-800/80 rounded-3xl shadow-xl transition-all duration-300 hover:border-emerald-500/40 cursor-pointer"
               onClick={() => setSelectedProject(project as unknown as Project)}
@@ -139,7 +139,7 @@ export function Projects() {
                 {/* Expand Hint Overlay */}
                 <div className="absolute top-3 left-3 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-zinc-950/85 backdrop-blur-md border border-zinc-800/80 text-xs text-zinc-300 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <Maximize2 size={12} className="text-emerald-400" />
-                  Ver detalhes
+                  {t.projects.viewDetails}
                 </div>
               </div>
 
@@ -177,7 +177,7 @@ export function Projects() {
                         className="flex-1 flex items-center justify-center gap-2 px-3.5 py-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-300 hover:text-white hover:bg-zinc-800 hover:border-zinc-700 text-xs font-medium transition-all shadow-md active:scale-95"
                         onClick={(e) => e.stopPropagation()}
                       >
-                        <GithubIcon /> Repositório
+                        <GithubIcon /> {t.projects.repo}
                       </a>
                     )}
                     {project.deploy && (
@@ -188,7 +188,7 @@ export function Projects() {
                         className="flex-1 flex items-center justify-center gap-2 px-3.5 py-2.5 rounded-xl bg-emerald-600 text-white hover:bg-emerald-500 text-xs font-medium transition-all shadow-md shadow-emerald-600/20 active:scale-95"
                         onClick={(e) => e.stopPropagation()}
                       >
-                        <ExternalLink size={14} /> Deploy
+                        <ExternalLink size={14} /> {t.projects.deploy}
                       </a>
                     )}
                   </div>
@@ -196,7 +196,6 @@ export function Projects() {
               </div>
             </div>
           )}
-
         />
       </div>
 
@@ -209,7 +208,7 @@ export function Projects() {
           rel="noopener noreferrer"
         >
           <GithubIcon />
-          Ver todos os projetos no GitHub
+          {t.projects.repo} GitHub
         </a>
       </div>
 
@@ -285,7 +284,7 @@ export function Projects() {
                       rel="noopener noreferrer"
                       className="flex items-center gap-2.5 px-5 py-2.5 rounded-xl bg-zinc-800 text-zinc-100 hover:text-white hover:bg-zinc-700 font-medium text-sm transition-all shadow-md active:scale-95"
                     >
-                      <GithubIcon /> Repositório GitHub
+                      <GithubIcon /> {t.projects.repo} GitHub
                     </a>
                   )}
                   {selectedProject.deploy && (
@@ -295,7 +294,7 @@ export function Projects() {
                       rel="noopener noreferrer"
                       className="flex items-center gap-2.5 px-5 py-2.5 rounded-xl bg-emerald-600 text-white hover:bg-emerald-500 font-medium text-sm transition-all shadow-md shadow-emerald-600/25 active:scale-95"
                     >
-                      <ExternalLink size={16} /> Visitar Deploy
+                      <ExternalLink size={16} /> {t.projects.deploy}
                     </a>
                   )}
                 </div>

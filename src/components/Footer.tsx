@@ -2,14 +2,7 @@
 
 import { ArrowUp, Mail } from 'lucide-react'
 import { GithubIcon, LinkedinIcon } from '@/components/icons'
-
-const NAV_LINKS = [
-  { label: 'Início', href: '#hero' },
-  { label: 'Experiência', href: '#experience' },
-  { label: 'Projetos', href: '#projects' },
-  { label: 'Habilidades', href: '#skills' },
-  { label: 'Contato', href: '#contact' },
-]
+import { useLanguage } from '@/providers/LanguageContext'
 
 const TECH_BADGES = [
   'React',
@@ -27,6 +20,16 @@ const TECH_BADGES = [
 ]
 
 export function Footer() {
+  const { t } = useLanguage()
+
+  const navLinks = [
+    { label: t.nav.hero, href: '#hero' },
+    { label: t.nav.experience, href: '#experience' },
+    { label: t.nav.projects, href: '#projects' },
+    { label: t.nav.skills, href: '#skills' },
+    { label: t.nav.contact, href: '#contact' },
+  ]
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
@@ -48,7 +51,7 @@ export function Footer() {
               Lucas Ribeiro<span className="text-emerald-400">.</span>
             </a>
             <p className="text-zinc-400 text-xs sm:text-sm leading-relaxed">
-              Desenvolvedor Full Stack criando aplicações web modernas, escaláveis e de alto desempenho com foco em UI/UX refinado.
+              {t.footer.role}
             </p>
           </div>
 
@@ -58,7 +61,7 @@ export function Footer() {
               Navegação
             </h4>
             <ul className="space-y-2">
-              {NAV_LINKS.map((link) => (
+              {navLinks.map((link) => (
                 <li key={link.href}>
                   <a
                     href={link.href}
@@ -133,7 +136,7 @@ export function Footer() {
 
         {/* Bottom Bar Divider & Copyright */}
         <div className="pt-8 border-t border-zinc-900/90 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-500">
-          <p>© {new Date().getFullYear()} Lucas Ribeiro. Todos os direitos reservados.</p>
+          <p>© {new Date().getFullYear()} Lucas Ribeiro. {t.footer.rights}</p>
 
           {/* Back to Top Button */}
           <button

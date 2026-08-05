@@ -1,9 +1,14 @@
+'use client'
+
 import { Skill } from '@/components/Skill'
 import { SKILLS } from '@/constants/skills'
 import { Code2, Server, Cpu, Terminal } from 'lucide-react'
 import * as Tooltip from '@radix-ui/react-tooltip'
+import { useLanguage } from '@/providers/LanguageContext'
 
 export function Skills() {
+  const { t } = useLanguage()
+
   return (
     <Tooltip.Provider delayDuration={100}>
       <section id="skills" className="py-24 space-y-12">
@@ -11,13 +16,13 @@ export function Skills() {
         <div className="space-y-2">
           <span className="text-emerald-400 text-sm font-semibold tracking-wider uppercase flex items-center gap-2">
             <Cpu className="w-4 h-4" />
-            Tech Stack
+            {t.skills.sectionBadge}
           </span>
           <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white">
-            Habilidades & Tecnologias
+            {t.skills.sectionTitle}
           </h2>
           <p className="text-zinc-400 text-base max-w-xl">
-            Ferramentas e tecnologias que utilizo no dia a dia para construir produtos modernos.
+            {t.skills.sectionDescription}
           </p>
         </div>
 
@@ -30,8 +35,10 @@ export function Skills() {
                   <Code2 size={22} />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-white tracking-tight">Front-End</h3>
-                  <p className="text-xs text-zinc-400">Interfaces web & mobile reativas</p>
+                  <h3 className="text-xl font-bold text-white tracking-tight">
+                    {t.skills.stacks.frontend}
+                  </h3>
+                  <p className="text-xs text-zinc-400">Interfaces web & mobile</p>
                 </div>
               </div>
               <div className="flex flex-wrap gap-3">
@@ -52,8 +59,10 @@ export function Skills() {
                   <Server size={22} />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-white tracking-tight">Back-End</h3>
-                  <p className="text-xs text-zinc-400">APIs, serviços & bancos de dados</p>
+                  <h3 className="text-xl font-bold text-white tracking-tight">
+                    {t.skills.stacks.backend}
+                  </h3>
+                  <p className="text-xs text-zinc-400">APIs & Databases</p>
                 </div>
               </div>
               <div className="flex flex-wrap gap-3">
@@ -74,8 +83,10 @@ export function Skills() {
                   <Terminal size={22} />
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold text-white tracking-tight leading-tight">DevOps & Ferramentas</h3>
-                  <p className="text-xs text-zinc-400">Cloud, CI/CD & utilitários</p>
+                  <h3 className="text-lg font-bold text-white tracking-tight leading-tight">
+                    {t.skills.stacks.devops}
+                  </h3>
+                  <p className="text-xs text-zinc-400">Cloud & Tooling</p>
                 </div>
               </div>
               <div className="flex flex-wrap gap-3">
