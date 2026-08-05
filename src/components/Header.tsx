@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { Links } from './Links'
+import { LanguageToggle } from './LanguageToggle'
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false)
@@ -32,9 +33,12 @@ export function Header() {
           Lucas Ribeiro<span className="text-emerald-400">.</span>
         </a>
 
-        <nav>
-          <Links />
-        </nav>
+        <div className="flex items-center gap-3">
+          <nav>
+            <Links />
+          </nav>
+          <LanguageToggle />
+        </div>
       </div>
     </header>
   )

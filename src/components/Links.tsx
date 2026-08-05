@@ -13,25 +13,27 @@ import {
 } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
-
-const NAV_ITEMS = [
-  { label: 'Início', href: '#hero', id: 'hero', icon: Home },
-  { label: 'Experiência', href: '#experience', id: 'experience', icon: Briefcase },
-  { label: 'Projetos', href: '#projects', id: 'projects', icon: FolderKanban },
-  { label: 'Habilidades', href: '#skills', id: 'skills', icon: Code2 },
-  { label: 'Contato', href: '#contact', id: 'contact', icon: Mail },
-]
+import { useLanguage } from '@/providers/LanguageContext'
 
 export function Links() {
   const [activeSection, setActiveSection] = useState('#hero')
   const [isOpen, setIsOpen] = useState(false)
+  const { t } = useLanguage()
+
+  const navItems = [
+    { label: t.nav.hero, href: '#hero', id: 'hero', icon: Home },
+    { label: t.nav.experience, href: '#experience', id: 'experience', icon: Briefcase },
+    { label: t.nav.projects, href: '#projects', id: 'projects', icon: FolderKanban },
+    { label: t.nav.skills, href: '#skills', id: 'skills', icon: Code2 },
+    { label: t.nav.contact, href: '#contact', id: 'contact', icon: Mail },
+  ]
 
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY + 250
 
-      for (let i = NAV_ITEMS.length - 1; i >= 0; i--) {
-        const item = NAV_ITEMS[i]
+      for (let i = navItems.length - 1; i >= 0; i--) {
+        const item = navItems[i]
         const element = document.getElementById(item.id)
         if (element) {
           const top = element.offsetTop
@@ -46,13 +48,13 @@ export function Links() {
     handleScroll()
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+  }, [navItems])
 
   return (
     <>
       {/* Desktop Navigation with Animated Sliding Pill */}
       <ul className="hidden sm:flex items-center gap-1 relative">
-        {NAV_ITEMS.map((item) => {
+        {navItems.map((item) => {
           const isActive = activeSection === item.href
 
           return (
@@ -90,7 +92,7 @@ export function Links() {
           <DropdownMenu.Trigger asChild>
             <button
               aria-label="Abrir menu de navegação"
-              className={`p-2.5 rounded-xl transition-all duration-300 focus:outline-none active:scale-95 border ${
+              className={`p-2 rounded-xl transition-all duration-300 focus:outline-none active:scale-95 border ${
                 isOpen
                   ? 'bg-zinc-900 text-emerald-400 border-emerald-500/50 shadow-lg shadow-emerald-500/15 ring-2 ring-emerald-500/20'
                   : 'bg-zinc-900/90 text-zinc-300 hover:text-white border-zinc-800/90 hover:border-zinc-700 shadow-md'
@@ -120,7 +122,7 @@ export function Links() {
                     {/* Menu Header */}
                     <div className="flex items-center justify-between px-3.5 py-2 border-b border-zinc-900/90 mb-1">
                       <span className="text-[10px] font-mono font-semibold tracking-wider text-zinc-400 uppercase">
-                        Navegação
+                        Navegação / Navigation
                       </span>
                       <span className="flex h-2 w-2 relative">
                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
@@ -129,7 +131,7 @@ export function Links() {
                     </div>
 
                     {/* Menu Items */}
-                    {NAV_ITEMS.map((item) => {
+                    {navItems.map((item) => {
                       const Icon = item.icon
                       const isActive = activeSection === item.href
 
