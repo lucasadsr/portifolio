@@ -132,6 +132,8 @@ const jsonLd = {
   ],
 }
 
+import { LanguageProvider } from '@/providers/LanguageContext'
+
 export default function RootLayout({
   children,
 }: {
@@ -145,7 +147,9 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="antialiased bg-black text-zinc-50">{children}</body>
+      <body className="antialiased bg-black text-zinc-50">
+        <LanguageProvider>{children}</LanguageProvider>
+      </body>
     </html>
   )
 }

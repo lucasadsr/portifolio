@@ -1,0 +1,219 @@
+import { Dictionary } from '@/types/language'
+
+export const pt: Dictionary = {
+  nav: {
+    hero: 'Início',
+    experience: 'Experiência',
+    projects: 'Projetos',
+    skills: 'Habilidades',
+    contact: 'Contato',
+  },
+  hero: {
+    statusBadge: 'Aberto a conexões & networking',
+    greeting: 'Olá, eu sou',
+    name: 'Lucas Ribeiro',
+    role: 'Engenheiro de Software',
+    bioLine1Part1: 'Engenheiro de Software focado na criação de aplicações ',
+    bioLine1Highlight1: 'web e mobile',
+    bioLine1Part2: ' modernas com ',
+    bioLine1Highlight2: 'Next.js',
+    bioLine1Part3: ', ',
+    bioLine1Highlight3: 'React',
+    bioLine1Part4: ', ',
+    bioLine1Highlight4: 'React Native',
+    bioLine1Part5: ' e TypeScript.',
+    bioLine2:
+      'Atualmente atuando no setor fintech/precatórios com foco em interfaces fluidas, gerenciamento de estado assíncrono e arquitetura escalável.',
+    github: 'GitHub',
+    linkedin: 'LinkedIn',
+    email: 'E-mail',
+    ariaScroll: 'Rolar para histórico profissional',
+  },
+  experience: {
+    sectionBadge: 'Histórico Profissional',
+    sectionTitle: 'Jornada & Experiência',
+    sectionDescription:
+      'Conheça minhas principais atuações no mercado de tecnologia, projetos desenvolvidos e habilidades aprimoradas.',
+    items: [
+      {
+        id: 'exp-1',
+        role: 'Engenheiro de Software (Front-end)',
+        company: 'Ativos Precatórios',
+        type: 'Tempo integral',
+        location: 'Recife, PE • Presencial',
+        period: 'Jan de 2025 — Presente',
+        description:
+          'Desenvolvimento da plataforma Celer, um ecossistema completo para gestão e negociação estratégica de precatórios. Atuação focada em alta performance, UI/UX intuitiva e arquitetura front-end escalável.',
+        highlights: [
+          'Desenvolvimento de interfaces modernas e responsivas com Next.js, Tailwind CSS e TypeScript',
+          'Gerenciamento de estado e consumo de APIs assíncronas com TanStack Query e Zustand',
+          'Validação de dados com Zod e padronização visual utilizando componentes Shadcn UI',
+          'Colaboração contínua em equipe ágil para entrega de funcionalidades de alto impacto',
+        ],
+        skills: [
+          'Next.js',
+          'React',
+          'TypeScript',
+          'Tailwind CSS',
+          'TanStack Query',
+          'Zustand',
+          'Zod',
+          'Shadcn UI',
+        ],
+      },
+      {
+        id: 'exp-2',
+        role: 'Engenheiro de Software',
+        company: 'Grupo Ser Educacional',
+        type: 'Estágio',
+        location: 'Recife, PE • Presencial',
+        period: 'Mar de 2024 — Jan de 2025',
+        description:
+          'Desenvolvimento de ecossistemas web e mobile voltados para impacto social e automação de processos operacionais, combinando atuação técnica e liderança de time.',
+        highlights: [
+          'Desenvolvimento do aplicativo mobile Bem Família (+500 downloads e nota 5/5 na loja)',
+          'Implementação do web app Sinal Vermelho (solução de combate à violência contra a mulher)',
+          'Construção de dashboards administrativos em Next.js, automatizando rotinas manuais',
+          'Liderança técnica de 4 desenvolvedores, organizando sprints e alinhando boas práticas de código',
+        ],
+        skills: [
+          'React',
+          'Next.js',
+          'React Native',
+          'Expo',
+          'TypeScript',
+          'Tailwind CSS',
+          'Liderança de Equipe',
+        ],
+      },
+    ],
+  },
+  projects: {
+    sectionBadge: 'Portfólio',
+    sectionTitle: 'Projetos em Destaque',
+    sectionDescription:
+      'Conheça algumas das aplicações web e APIs que desenvolvi recentemente.',
+    deckHint: 'Arraste ou use as setas para navegar',
+    viewDetails: 'Ver detalhes',
+    repo: 'Repositório',
+    deploy: 'Deploy',
+    items: [
+      {
+        id: 1,
+        name: 'Pittaya UI kit',
+        description:
+          'Uma biblioteca de interface de usuário totalmente de código aberto para React, baseada em TypeScript e Tailwind CSS. Rápida, componível e pronta para produção.',
+        techs: ['Next.Js', 'TypeScript', 'Tailwind CSS', 'Shadcn/UI'],
+        image: '/project-images/pittaya.webp',
+        repo: 'https://github.com/pittaya-ui/ui-kit',
+        deploy: 'https://ui.pittaya.org/',
+      },
+      {
+        id: 2,
+        name: 'Agrupe',
+        description:
+          'Aplicação web moderna para gerenciamento colaborativo de eventos em grupos. Permite que usuários criem grupos, gerenciem membros com diferentes permissões, organizem eventos em calendários compartilhados e visualizem eventos próximos.',
+        techs: [
+          'Next.Js',
+          'TypeScript',
+          'Tailwind CSS',
+          'TanStack Query',
+          'Supabase',
+          'Vercel Cron Jobs',
+          'GSAP',
+          'Zod',
+        ],
+        image: '/project-images/agrupe.webp',
+        deploy: 'https://www.agrupe.app/',
+      },
+      {
+        id: 3,
+        name: 'Bewear',
+        description:
+          'Aplicação completa de e-commerce que oferece uma experiência de compra fluida e moderna. A plataforma permite aos usuários navegar por produtos, adicionar itens ao carrinho, realizar pagamentos seguros e gerenciar seus pedidos.',
+        techs: [
+          'Next.Js',
+          'TypeScript',
+          'Tailwind CSS',
+          'Drizzle ORM',
+          'PostgreSQL',
+          'Stripe',
+          'Tanstack Query',
+        ],
+        image: '/project-images/bewear.webp',
+        repo: 'https://github.com/lucasadsr/bewear',
+        deploy: 'https://bewear-rouge.vercel.app/',
+      },
+      {
+        id: 4,
+        name: 'WeatherNow',
+        description:
+          'Aplicativo de previsão do tempo moderno e multiplataforma, desenvolvido com Expo e React Native. Oferece atualizações meteorológicas em tempo real, previsões precisas para 5 dias e uma maneira intuitiva de gerenciar suas cidades favoritas. Funciona perfeitamente em iOS, Android e na web.',
+        techs: [
+          'Expo',
+          'React Native',
+          'TypeScript',
+          'Tailwind CSS',
+          'TanStack Query',
+          'OpenWeatherMap API',
+          'React Native Reanimated',
+        ],
+        image: '/project-images/weather.webp',
+        repo: 'https://github.com/lucasadsr/WeatherNow',
+      },
+      {
+        id: 5,
+        name: 'Gopportunities',
+        description:
+          'Uma API RESTful para gerenciamento de vagas de emprego, desenvolvida em Go. Suporta todas as operações CRUD e inclui documentação Swagger gerada automaticamente.',
+        techs: ['Go', 'Gin', 'GORM', 'SQLite', 'Swaggo'],
+        image: '/project-images/gopportunities.webp',
+        repo: 'https://github.com/lucasadsr/gopportunities',
+      },
+      {
+        id: 6,
+        name: 'Pittaya Theme',
+        description:
+          'Extensão para VS Code e outras IDEs com o tema Pittaya UI.',
+        techs: ['TypeScript', 'ts-node', 'VS Code Extension'],
+        image: '/project-images/pittaya-theme.webp',
+        repo: 'https://github.com/pittaya-ui/pittaya-theme',
+        deploy: 'https://open-vsx.org/extension/pittaya-org/pittaya-theme',
+      },
+    ],
+  },
+  skills: {
+    sectionBadge: 'Conhecimentos',
+    sectionTitle: 'Tecnologias & Ferramentas',
+    sectionDescription:
+      'Linguagens, frameworks, bibliotecas e ferramentas que utilizo no meu dia a dia.',
+    stacks: {
+      frontend: 'Front-end & Mobile',
+      backend: 'Back-end & Banco de Dados',
+      devops: 'DevOps & Ferramentas',
+    },
+  },
+  contact: {
+    sectionBadge: 'Contato',
+    sectionTitle: 'Vamos nos conectar?',
+    sectionDescription:
+      'Envie uma mensagem para trocarmos uma ideia sobre tecnologia, desenvolvimento ou networking.',
+    form: {
+      nameLabel: 'Nome',
+      namePlaceholder: 'Seu nome completo',
+      emailLabel: 'E-mail',
+      emailPlaceholder: 'seu.email@exemplo.com',
+      messageLabel: 'Mensagem',
+      messagePlaceholder: 'Como posso ajudar ou sobre o que quer conversar?',
+      submitButton: 'Enviar Mensagem',
+      submittingButton: 'Enviando...',
+      successMessage: 'Mensagem enviada com sucesso! Responderei em breve.',
+      errorMessage:
+        'Ocorreu um erro ao enviar a mensagem. Tente novamente mais tarde.',
+    },
+  },
+  footer: {
+    role: 'Engenheiro de Software Full Stack',
+    rights: 'Todos os direitos reservados.',
+  },
+}
