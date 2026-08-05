@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <main className="min-h-screen w-full overflow-x-hidden">
       <Hero />
-      <div className="w-full max-w-[1140px] mx-auto px-6 sm:px-8">
+      <div className="w-full max-w-285 mx-auto px-6 sm:px-8">
         <Experience />
         <GithubStats />
         <Projects />
