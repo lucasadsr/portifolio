@@ -44,6 +44,21 @@ export interface Dictionary {
       skills: string[]
     }>
   }
+  githubStats: {
+    sectionBadge: string
+    sectionTitle: string
+    sectionDescription: string
+    liveIndicator: string
+    publicRepos: string
+    publicReposSub: string
+    totalStars: string
+    totalStarsSub: string
+    followers: string
+    followersSub: string
+    pittayaStars: string
+    pittayaStarsSub: string
+    visitProfile: string
+  }
   projects: {
     sectionBadge: string
     sectionTitle: string

@@ -88,6 +88,22 @@ export const pt: Dictionary = {
       },
     ],
   },
+  githubStats: {
+    sectionBadge: 'Open Source & Atividade',
+    sectionTitle: 'Métricas do GitHub',
+    sectionDescription:
+      'Dados em tempo real extraídos da API do GitHub mostrando projetos públicos, impacto de comunidade e repositórios.',
+    liveIndicator: 'Dados da API do GitHub em tempo real',
+    publicRepos: 'Repositórios Públicos',
+    publicReposSub: 'Projetos open source publicados',
+    totalStars: 'Estrelas Acumuladas',
+    totalStarsSub: 'Reconhecimento nos repositórios',
+    followers: 'Seguidores no GitHub',
+    followersSub: 'Desenvolvedores conectados',
+    pittayaStars: 'Ecossistema Pittaya UI',
+    pittayaStarsSub: 'Estrelas no Pittaya UI Kit',
+    visitProfile: 'Ver perfil completo no GitHub',
+  },
   projects: {
     sectionBadge: 'Portfólio',
     sectionTitle: 'Projetos em Destaque',
